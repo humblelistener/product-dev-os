@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Product Development Operating System — Infographic</title>
+<meta name="description" content="One-page visual: why AI coding tools plateau, and the operating system that breaks through.">
+<meta name="author" content="Karthik Padmanabhan">
+<style>
+  :root{
+    --ink:#1b1b1a;--soft:#54524d;--faint:#8c887f;--paper:#fbfaf7;
+    --line:#e4e0d7;--accent:#2f4858;--accent-soft:#6b8a99;--rule:#d8d3c8;--mark:#f3efe6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:#efece4;color:var(--ink);
+    font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;padding:28px 14px;
+  }
+  .serif{font-family:"Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;}
+  .poster{
+    width:760px;max-width:100%;margin:0 auto;background:var(--paper);
+    border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    box-shadow:0 12px 40px rgba(0,0,0,.10);
+  }
+  .pad{padding:38px 44px;}
+  @media (max-width:560px){.pad{padding:26px 22px;}}
+
+  /* header */
+  .head{border-top:7px solid var(--ink);}
+  .kick{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:0 0 14px;}
+  h1{font-family:"Charter","Iowan Old Style",Palatino,Georgia,serif;font-size:2.5rem;line-height:1.06;letter-spacing:-.015em;font-weight:600;margin:0 0 12px;}
+  .sub{font-family:"Charter",Palatino,Georgia,serif;font-size:1.18rem;line-height:1.4;color:var(--soft);font-style:italic;margin:0 0 18px;}
+  .by{font-size:.84rem;color:var(--faint);border-top:1px solid var(--line);padding-top:12px;}
+  .by strong{color:var(--ink);}
+
+  .sectlabel{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-soft);font-weight:700;margin:0 0 4px;}
+  .sectlabel .n{color:var(--accent);}
+  h2{font-family:"Charter",Palatino,Georgia,serif;font-size:1.55rem;line-height:1.12;letter-spacing:-.01em;font-weight:600;margin:0 0 14px;}
+  .divider{height:1px;background:var(--rule);margin:0 44px;}
+  @media (max-width:560px){.divider{margin:0 22px;}}
+
+  /* plateau chart */
+  .chart{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+  .chart svg{width:320px;max-width:100%;height:auto;}
+  .chart p{font-family:"Charter",Palatino,Georgia,serif;font-size:1.05rem;line-height:1.45;color:var(--ink);margin:0;flex:1;min-width:220px;}
+  .chart .accent{color:var(--accent);font-weight:600;}
+
+  /* walls */
+  .walls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  @media (max-width:560px){.walls{grid-template-columns:1fr;}}
+  .wall{background:#fff;border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:7px;padding:14px 15px;}
+  .wall .wn{font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-soft);font-weight:700;margin-bottom:5px;}
+  .wall .wt{font-weight:600;font-size:1.02rem;line-height:1.2;margin-bottom:7px;letter-spacing:-.005em;}
+  .wall p{font-size:.86rem;line-height:1.42;color:var(--soft);margin:0;}
+
+  /* architecture */
+  figure{margin:0;}
+  figure svg{width:100%;height:auto;background:#fff;border:1px solid var(--line);border-radius:7px;}
+
+  /* constraint */
+  .constraint{background:var(--mark);border-radius:7px;padding:16px 18px;}
+  .constraint p{font-family:"Charter",Palatino,Georgia,serif;font-size:1.05rem;line-height:1.45;margin:0;}
+  .constraint .accent{color:var(--accent);font-weight:600;}
+
+  /* metric */
+  .metric{text-align:center;}
+  .formula{font-size:1.5rem;font-weight:600;letter-spacing:-.01em;margin:6px 0 16px;}
+  .formula .div{color:var(--accent-soft);margin:0 .3em;}
+  .formula .o{color:var(--accent);font-style:italic;font-family:"Charter",Palatino,serif;}
+  .rules{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;text-align:left;}
+  @media (max-width:560px){.rules{grid-template-columns:1fr;}}
+  .rule{font-size:.84rem;line-height:1.4;color:var(--soft);}
+  .rule b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px;}
+
+  /* thesis footer */
+  .thesis{background:var(--accent);color:#fff;}
+  .thesis .pad{padding:30px 44px;}
+  .thesis .big{font-family:"Charter",Palatino,Georgia,serif;font-size:1.7rem;line-height:1.2;font-weight:600;letter-spacing:-.01em;margin:0 0 14px;}
+  .thesis .big em{color:#cfe0e7;font-style:italic;}
+  .thesis .links{font-size:.86rem;color:#bcccd4;border-top:1px solid rgba(255,255,255,.18);padding-top:14px;}
+  .thesis .links a{color:#fff;text-decoration:underline;text-underline-offset:2px;}
+  .thesis .url{font-weight:600;color:#fff;letter-spacing:.02em;}
+
+  .topnav{width:760px;max-width:100%;margin:0 auto 12px;font-size:.8rem;color:var(--faint);}
+  .topnav a{color:var(--accent);text-decoration:none;}
+  .topnav a:hover{text-decoration:underline;}
+
+  @media print{
+    body{background:#fff;padding:0;}
+    .poster{box-shadow:none;border:none;border-radius:0;width:100%;}
+    .topnav{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">← <a href="index.html">White paper</a> · <a href="blog.html">Blog</a> · <a href="deck.html">Deck</a></nav>
+
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="head pad">
+    <p class="kick">The Product Development Operating System · One page</p>
+    <h1>AI tools gave you a bump.<br>Then the curve flattened.</h1>
+    <p class="sub">The next gain isn't another tool — it's structural. Here is the structure, where it breaks, and where the constraint goes next.</p>
+    <p class="by">By <strong>Karthik Padmanabhan</strong> · Engineering leadership in the agentic era</p>
+  </div>
+  <div class="divider"></div>
+
+  <!-- PLATEAU -->
+  <div class="pad">
+    <p class="sectlabel"><span class="n">01</span> The problem</p>
+    <h2>The plateau nobody names</h2>
+    <div class="chart">
+      <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-label="A curve rising steeply then flattening into a plateau">
+        <line x1="30" y1="150" x2="306" y2="150" stroke="#d8d3c8" stroke-width="1.5"/>
+        <line x1="30" y1="150" x2="30" y2="16" stroke="#d8d3c8" stroke-width="1.5"/>
+        <path d="M30,147 C80,142 95,52 150,40 C205,28 260,30 306,28" fill="none" stroke="#2f4858" stroke-width="3"/>
+        <path d="M150,40 L306,28" fill="none" stroke="#cf4b3a" stroke-width="2" stroke-dasharray="4 4"/>
+        <circle cx="150" cy="40" r="4" fill="#cf4b3a"/>
+        <text x="158" y="34" font-size="10" fill="#cf4b3a">the bend</text>
+        <text x="34" y="168" font-size="9.5" fill="#8c887f">tools arrive</text>
+        <text x="248" y="44" font-size="9.5" fill="#8c887f">plateau</text>
+      </svg>
+      <p>Hand developers AI tools and throughput jumps <span class="accent">60%+</span> — then the curve bends, the next cohort gains less, and the org settles onto a higher shelf. Buying more tools barely moves the line. <span class="accent">The ceiling is structural, not a tooling problem.</span></p>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- WALLS -->
+  <div class="pad">
+    <p class="sectlabel"><span class="n">02</span> The diagnosis</p>
+    <h2>The plateau is three walls</h2>
+    <div class="walls">
+      <div class="wall">
+        <div class="wn">Wall one</div>
+        <div class="wt">Speed the middle, not the ends</div>
+        <p>Code got cheap. The constraint moved to deciding <em>what</em> to build and keeping the system healthy — the ends tools never touch.</p>
+      </div>
+      <div class="wall">
+        <div class="wn">Wall two</div>
+        <div class="wt">You can't automate vagueness</div>
+        <p>An agent amplifies the process it's dropped into. Feed it one-line tickets and you get ambiguity, faster.</p>
+      </div>
+      <div class="wall">
+        <div class="wn">Wall three</div>
+        <div class="wt">Gains don't compound</div>
+        <p>A tool makes one person faster. Twenty faster silos with no coordination layer is still a plateau.</p>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- ARCHITECTURE -->
+  <div class="pad">
+    <p class="sectlabel"><span class="n">03</span> The fix</p>
+    <h2>An operating system, not more tools</h2>
+    <figure>
+      <svg viewBox="0 0 720 430" xmlns="http://www.w3.org/2000/svg" aria-label="Two planes — flow and technology — tuned by two regulators, wired by telemetry">
+        <defs>
+          <marker id="a" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="#2f4858"/></marker>
+          <marker id="as" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="#6b8a99"/></marker>
+        </defs>
+        <text x="360" y="16" text-anchor="middle" font-size="10" fill="#8c887f" font-style="italic">Signals · customer · product · operations · platform</text>
+        <line x1="360" y1="22" x2="360" y2="36" stroke="#2f4858" stroke-width="1.6" marker-end="url(#a)"/>
+        <text x="210" y="33" font-size="9.5" letter-spacing="1" fill="#6b8a99" font-weight="700">FLOW PLANE</text>
+        <rect x="210" y="40" width="300" height="40" rx="6" fill="#fff" stroke="#d8d3c8" stroke-width="1.1"/>
+        <text x="360" y="59" text-anchor="middle" font-size="12" font-weight="700" fill="#1b1b1a">Organisation Knowledge agents</text>
+        <text x="360" y="73" text-anchor="middle" font-size="10" fill="#54524d">maintain the org knowledge base</text>
+        <line x1="360" y1="80" x2="360" y2="94" stroke="#2f4858" stroke-width="1.6" marker-end="url(#a)"/>
+        <rect x="210" y="98" width="300" height="80" rx="6" fill="#fff" stroke="#d8d3c8" stroke-width="1.1"/>
+        <text x="360" y="117" text-anchor="middle" font-size="12" font-weight="700" fill="#1b1b1a">Buildable Backlog agent</text>
+        <text x="360" y="131" text-anchor="middle" font-size="10" fill="#54524d">classify · manufacture clarity (rubric + escalate)</text>
+        <rect x="226" y="140" width="66" height="22" rx="4" fill="#f7f4ee" stroke="#e0dbcf"/><text x="259" y="155" text-anchor="middle" font-size="9.5" fill="#1b1b1a" font-weight="600">experiment</text>
+        <rect x="296" y="140" width="60" height="22" rx="4" fill="#f7f4ee" stroke="#e0dbcf"/><text x="326" y="155" text-anchor="middle" font-size="9.5" fill="#1b1b1a" font-weight="600">learning</text>
+        <rect x="360" y="140" width="50" height="22" rx="4" fill="#f7f4ee" stroke="#e0dbcf"/><text x="385" y="155" text-anchor="middle" font-size="9.5" fill="#1b1b1a" font-weight="600">build</text>
+        <rect x="414" y="140" width="80" height="22" rx="4" fill="#f7f4ee" stroke="#e0dbcf"/><text x="454" y="155" text-anchor="middle" font-size="9.5" fill="#1b1b1a" font-weight="600">bug</text>
+        <line x1="360" y1="178" x2="360" y2="192" stroke="#2f4858" stroke-width="1.6" marker-end="url(#a)"/>
+        <rect x="210" y="196" width="300" height="40" rx="6" fill="#fff" stroke="#d8d3c8" stroke-width="1.1"/>
+        <text x="360" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#1b1b1a">Product &amp; Platform builders</text>
+        <text x="360" y="229" text-anchor="middle" font-size="10" fill="#54524d">run time-boxed missions — weeks, not quarters</text>
+        <line x1="360" y1="236" x2="360" y2="250" stroke="#2f4858" stroke-width="1.6" marker-end="url(#a)"/>
+        <rect x="36" y="254" width="648" height="86" rx="8" fill="#eef2f4" stroke="#6b8a99" stroke-width="1.2"/>
+        <text x="54" y="275" font-size="9.5" letter-spacing="1" fill="#2f4858" font-weight="700">TECHNOLOGY PLANE · one shared cloud dev environment</text>
+        <text x="54" y="291" font-size="10" fill="#54524d">humans + toil agents — fluid · verifiable · safe sandboxed autonomy</text>
+        <rect x="54" y="301" width="290" height="32" rx="5" fill="#fff" stroke="#d8d3c8"/>
+        <text x="199" y="321" text-anchor="middle" font-size="10" fill="#1b1b1a" font-weight="600">Toil / BAU agents · scheduled · triggered</text>
+        <rect x="356" y="301" width="310" height="32" rx="5" fill="#fff" stroke="#d8d3c8"/>
+        <circle cx="374" cy="317" r="4" fill="#cf4b3a"/><circle cx="386" cy="317" r="4" fill="#e0a93b"/><circle cx="398" cy="317" r="4" fill="#4a9b5e"/>
+        <text x="520" y="321" text-anchor="middle" font-size="10" fill="#1b1b1a" font-weight="600">code-review → traffic-signal gate</text>
+        <line x1="360" y1="340" x2="360" y2="354" stroke="#2f4858" stroke-width="1.6" marker-end="url(#a)"/>
+        <text x="360" y="372" text-anchor="middle" font-size="10" fill="#8c887f" font-style="italic">→ deployed, customer-impacting change</text>
+        <rect x="540" y="98" width="146" height="34" rx="6" fill="#2f4858"/>
+        <text x="551" y="115" font-size="9.5" fill="#fff" font-weight="700">Clarity regulator</text>
+        <text x="551" y="127" font-size="8" fill="#cdd8de">problem ↔ solution</text>
+        <line x1="540" y1="115" x2="512" y2="122" stroke="#2f4858" stroke-width="1.4" marker-end="url(#a)"/>
+        <rect x="540" y="138" width="146" height="34" rx="6" fill="#2f4858"/>
+        <text x="551" y="155" font-size="9.5" fill="#fff" font-weight="700">Throughput reg.</text>
+        <text x="551" y="167" font-size="8" fill="#cdd8de">mix by classification</text>
+        <line x1="540" y1="155" x2="512" y2="150" stroke="#2f4858" stroke-width="1.4" marker-end="url(#a)"/>
+        <path d="M210,368 L40,368 L40,60 L206,60" fill="none" stroke="#6b8a99" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#as)"/>
+        <text x="26" y="214" font-size="9.5" letter-spacing="1" fill="#6b8a99" font-weight="700" transform="rotate(-90 26 214)" text-anchor="middle">TELEMETRY · every stage</text>
+      </svg>
+    </figure>
+  </div>
+  <div class="divider"></div>
+
+  <!-- CONSTRAINT -->
+  <div class="pad">
+    <p class="sectlabel"><span class="n">04</span> The honest part</p>
+    <h2>The constraint doesn't vanish — it moves</h2>
+    <div class="constraint">
+      <p>Automate both ends and the bottleneck relocates to two coupled places: the <span class="accent">clarity / SME node</span> and the <span class="accent">human-review queue</span>. The system's job is to subordinate everything to that constraint — then raise it. Leverage is capped by it; pretending otherwise is how the plateau returns wearing a new hat.</p>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- METRIC -->
+  <div class="pad metric">
+    <p class="sectlabel" style="text-align:center"><span class="n">05</span> The metric</p>
+    <h2 style="text-align:center">Leverage per engineer</h2>
+    <div class="formula"><span class="o">customer-impacting outcome</span> <span class="div">÷</span> humans</div>
+    <div class="rules">
+      <div class="rule"><b>Outcome, not output</b>measured after ship — adoption, retention, task-success — not a self-declared change count.</div>
+      <div class="rule"><b>Humans only</b>agents tracked separately, so you can't game it or punish the platform.</div>
+      <div class="rule"><b>Never alone</b>paired with a quality guardrail; an org-level trend, never a team target.</div>
+    </div>
+  </div>
+
+  <!-- THESIS -->
+  <div class="thesis">
+    <div class="pad">
+      <p class="big">Tools gave you a bump. The operating system is how you build a <em>slope</em>.</p>
+      <p class="links">Start by measuring two numbers — your <strong style="color:#fff">bounce-back rate</strong> and your <strong style="color:#fff">review-queue depth</strong>. They locate your constraint before you spend a dollar on architecture.<br><br>
+      Read the full white paper: <span class="url">humblelistener.github.io/product-dev-os</span> &nbsp;·&nbsp; <a href="index.html">paper</a> · <a href="blog.html">blog</a> · <a href="deck.html">deck</a></p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

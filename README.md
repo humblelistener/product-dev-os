@@ -7,13 +7,16 @@ By **Karthik Padmanabhan**.
 
 ## Read it
 
-- **White paper** — `index.html` (the full ~15-minute argument)
-- **Blog post** — `blog.html` / `blog.md` (the condensed ~5-minute version)
+Live at **https://humblelistener.github.io/product-dev-os/**
 
-Once published via GitHub Pages, the live versions are at:
+| Artifact | File | What |
+|---|---|---|
+| White paper | `index.html` | The full argument (~28 min) |
+| Blog post | `blog.html` / `blog.md` | Condensed version (~5 min) |
+| Deck | `deck.html` | Self-running, keyboard-navigable slides |
+| Infographic | `infographic.html` | One-page poster, shareable / printable |
 
-- White paper: `https://<user>.github.io/product-dev-os/`
-- Blog post: `https://<user>.github.io/product-dev-os/blog.html`
+All four are self-contained HTML and cross-linked.
 
 ## The argument, in one paragraph
 

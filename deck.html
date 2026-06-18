@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Product Development Operating System — Deck</title>
+<meta name="description" content="A self-running deck: why AI coding tools plateau, and the operating system that breaks through.">
+<meta name="author" content="Karthik Padmanabhan">
+<style>
+  :root{
+    --ink:#1b1b1a;--soft:#54524d;--faint:#8c887f;--paper:#fbfaf7;
+    --line:#e4e0d7;--accent:#2f4858;--accent-soft:#6b8a99;--rule:#d8d3c8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Charter","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow:hidden;
+  }
+  .sans{font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;}
+
+  .deck{position:fixed;inset:0;}
+  .slide{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:6vh 8vw 11vh;
+    opacity:0;visibility:hidden;transform:translateY(12px);
+    transition:opacity .42s ease,transform .42s ease;
+    overflow:auto;
+  }
+  .slide.active{opacity:1;visibility:visible;transform:none;}
+
+  .kicker{
+    font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
+    font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);
+    font-weight:700;margin:0 0 1.4rem;
+  }
+  .kicker .n{color:var(--accent-soft);}
+  h1{font-size:clamp(2rem,5.2vw,4.2rem);line-height:1.04;letter-spacing:-.015em;font-weight:600;margin:0 0 1.2rem;max-width:18ch;}
+  h2{font-size:clamp(1.7rem,4vw,3.1rem);line-height:1.08;letter-spacing:-.012em;font-weight:600;margin:0 0 1.4rem;max-width:20ch;}
+  .lead-line{font-size:clamp(1.1rem,2vw,1.6rem);line-height:1.4;color:var(--soft);max-width:34ch;margin:0 0 1rem;}
+  p.big{font-size:clamp(1.15rem,2.1vw,1.7rem);line-height:1.38;max-width:30ch;margin:0 0 1rem;}
+  .em{color:var(--accent);font-style:italic;}
+  ul.pts{list-style:none;margin:1rem 0 0;padding:0;max-width:40ch;}
+  ul.pts li{font-size:clamp(1rem,1.7vw,1.35rem);line-height:1.4;margin:0 0 .9rem;padding-left:1.4rem;position:relative;}
+  ul.pts li::before{content:"";position:absolute;left:0;top:.6em;width:.5rem;height:.5rem;background:var(--accent-soft);border-radius:50%;}
+  ul.pts li strong{font-weight:600;}
+  .byline{font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;font-size:1rem;color:var(--faint);margin-top:1.6rem;}
+  .byline strong{color:var(--ink);font-weight:600;}
+
+  /* wall number motif */
+  .wallnum{font-family:"Inter",sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-soft);font-weight:700;margin-bottom:.6rem;}
+
+  /* two-column for some slides */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;max-width:60ch;}
+  .card{border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:6px;padding:1.1rem 1.2rem;background:#fff;}
+  .card .ch{font-family:"Inter",sans-serif;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-soft);font-weight:700;}
+  .card .cn{font-weight:600;font-size:1.2rem;margin:.2rem 0 .5rem;}
+  .card p{font-size:.98rem;line-height:1.45;color:var(--soft);margin:0;}
+  @media (max-width:640px){.cols{grid-template-columns:1fr;}}
+
+  figure{margin:0;display:flex;flex-direction:column;align-items:center;}
+  figure svg{max-height:64vh;width:auto;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:6px;}
+
+  blockquote{margin:0;font-size:clamp(1.5rem,3.4vw,2.7rem);line-height:1.2;font-weight:600;letter-spacing:-.012em;max-width:22ch;border:0;padding:0;}
+  blockquote .em{color:var(--accent);}
+
+  .mono-metric{font-family:"Inter",sans-serif;font-size:clamp(1.2rem,2.6vw,2.1rem);font-weight:600;letter-spacing:-.01em;margin:.6rem 0 1.4rem;}
+  .mono-metric .div{color:var(--accent-soft);}
+
+  /* mini plateau chart */
+  .chartwrap{margin-top:1.4rem;}
+  .chartwrap svg{width:min(560px,80vw);height:auto;}
+
+  /* nav + chrome */
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0;transition:width .42s ease;z-index:20;}
+  .chrome{
+    position:fixed;left:0;right:0;bottom:0;height:8vh;min-height:48px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 8vw;font-family:"Inter",sans-serif;font-size:.8rem;color:var(--faint);
+    z-index:20;pointer-events:none;
+  }
+  .chrome a,.chrome button{pointer-events:auto;}
+  .chrome .home{color:var(--faint);text-decoration:none;letter-spacing:.04em;}
+  .chrome .home:hover{color:var(--accent);}
+  .nav{display:flex;align-items:center;gap:.4rem;}
+  .nav button{
+    font-family:"Inter",sans-serif;border:1px solid var(--rule);background:#fff;color:var(--accent);
+    width:34px;height:34px;border-radius:6px;cursor:pointer;font-size:1rem;line-height:1;
+  }
+  .nav button:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .count{min-width:62px;text-align:center;font-variant-numeric:tabular-nums;}
+  .hint{position:fixed;bottom:9vh;left:0;right:0;text-align:center;font-family:"Inter",sans-serif;font-size:.72rem;color:var(--faint);letter-spacing:.08em;z-index:15;opacity:.9;}
+  @media (max-width:640px){.hint{display:none;}}
+</style>
+</head>
+<body>
+
+<div class="progress" id="bar"></div>
+<div class="deck" id="deck">
+
+  <!-- 1 -->
+  <section class="slide">
+    <p class="kicker">White Paper · A Deck</p>
+    <h1>The Product Development Operating System</h1>
+    <p class="lead-line">Why AI coding tools plateau — and the structure that breaks through.</p>
+    <p class="byline">By <strong>Karthik Padmanabhan</strong> · use → or click to advance</p>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">01</span> &nbsp;The setup</p>
+    <h2>Everyone ran the same experiment</h2>
+    <p class="big">Hand developers AI assistants. Watch throughput climb. In our data, pull requests per engineer rose <span class="em">more than 60%</span> in two quarters; most code now has AI in its lineage.</p>
+    <p class="big">For a few months, the mood is festival.</p>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">02</span> &nbsp;The problem</p>
+    <h2>Then, quietly, the lights come down</h2>
+    <p class="lead-line">The first cohort gets a dramatic lift. The next gets less. The organisation settles onto a higher plateau — and stops climbing. So you buy more tools. The line barely moves.</p>
+    <div class="chartwrap">
+      <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" aria-label="A curve that rises steeply then flattens into a plateau">
+        <line x1="40" y1="180" x2="540" y2="180" stroke="#d8d3c8" stroke-width="1.5"/>
+        <line x1="40" y1="180" x2="40" y2="20" stroke="#d8d3c8" stroke-width="1.5"/>
+        <path d="M40,176 C120,170 150,70 240,52 C320,38 420,40 540,38" fill="none" stroke="#2f4858" stroke-width="3"/>
+        <path d="M240,52 L540,38" fill="none" stroke="#cf4b3a" stroke-width="2" stroke-dasharray="4 4"/>
+        <circle cx="240" cy="52" r="4" fill="#cf4b3a"/>
+        <text x="250" y="44" font-family="Inter,sans-serif" font-size="12" fill="#cf4b3a">the bend</text>
+        <text x="44" y="200" font-family="Inter,sans-serif" font-size="11" fill="#8c887f">tools arrive</text>
+        <text x="470" y="58" font-family="Inter,sans-serif" font-size="11" fill="#8c887f">plateau</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">03</span> &nbsp;The diagnosis</p>
+    <h2>The plateau is three walls in a row</h2>
+    <p class="lead-line">None of them is about model quality. The ceiling is structural — you automated the easy middle and left the hard ends untouched.</p>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide">
+    <p class="wallnum">Wall one</p>
+    <h2>Tools speed the middle, not the ends</h2>
+    <p class="big">Code generation got cheap. So the constraint moved — upstream (deciding <span class="em">what</span> to build) and downstream (keeping the system healthy). A faster middle makes both ends <span class="em">worse</span>.</p>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide">
+    <p class="wallnum">Wall two</p>
+    <h2>You cannot automate vagueness</h2>
+    <p class="big">My grandmother cooked for forty from "salt as needed, cook till it's done." Hand that to someone who's never stood at the stove and you don't get the feast faster — you get confusion faster.</p>
+    <p class="big">An agent is the new cook. It amplifies whatever process it's dropped into. The ends are where the vagueness lives.</p>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide">
+    <p class="wallnum">Wall three</p>
+    <h2>Individual gains don't compound</h2>
+    <p class="big">A tool makes <span class="em">one person</span> faster. Twenty engineers 40% faster in twenty directions isn't a 40% faster org — it's twenty faster silos and a coordination problem that eats the gain.</p>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">04</span> &nbsp;The reframe</p>
+    <h2>An operating system, not more tools</h2>
+    <p class="lead-line">A real OS <strong>schedules</strong>, <strong>allocates</strong>, <strong>enforces contracts</strong>, and <strong>abstracts the machine</strong>. And it exposes <strong>governors</strong> — tunable parameters that adapt it to context.</p>
+    <p class="lead-line">Raw processors aren't a computer. Fast engineers with tools aren't an operating system.</p>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">05</span> &nbsp;The architecture</p>
+    <figure>
+      <svg viewBox="0 0 860 545" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Helvetica Neue, Arial, sans-serif" aria-label="Two planes — flow and technology — tuned by two regulators, wired by telemetry">
+        <defs>
+          <marker id="ar" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="#2f4858"/></marker>
+          <marker id="ars" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="#6b8a99"/></marker>
+        </defs>
+        <text x="430" y="18" text-anchor="middle" font-size="11" fill="#8c887f" font-style="italic">Signals · customer · product · operations · platform</text>
+        <line x1="430" y1="24" x2="430" y2="40" stroke="#2f4858" stroke-width="1.7" marker-end="url(#ar)"/>
+        <text x="250" y="36" font-size="10.5" letter-spacing="1" fill="#6b8a99" font-weight="700">FLOW PLANE</text>
+        <rect x="250" y="44" width="360" height="46" rx="6" fill="#fff" stroke="#d8d3c8" stroke-width="1.2"/>
+        <text x="430" y="66" text-anchor="middle" font-size="13" font-weight="700" fill="#1b1b1a">Organisation Knowledge agents</text>
+        <text x="430" y="82" text-anchor="middle" font-size="11" fill="#54524d">maintain the org knowledge base</text>
+        <line x1="430" y1="90" x2="430" y2="106" stroke="#2f4858" stroke-width="1.7" marker-end="url(#ar)"/>
+        <rect x="250" y="110" width="360" height="92" rx="6" fill="#fff" stroke="#d8d3c8" stroke-width="1.2"/>
+        <text x="430" y="131" text-anchor="middle" font-size="13" font-weight="700" fill="#1b1b1a">Buildable Backlog agent</text>
+        <text x="430" y="147" text-anchor="middle" font-size="11" fill="#54524d">classify · manufacture clarity (rubric + escalate)</text>
+        <rect x="268" y="158" width="78" height="24" rx="4" fill="#f7f4ee" stroke="#e0dbcf"/><text x="307" y="174" text-anchor="middle" font-size="10.5" fill="#1b1b1a" font-weight="600">experiment</text>
+        <rect x="350" y="158" width="78" height="24" rx="4" fill="#f7f4ee" stroke="#e0dbcf"/><text x="389" y="174" text-anchor="middle" font-size="10.5" fill="#1b1b1a" font-weight="600">learning</text>
+        <rect x="432" y="158" width="78" height="24" rx="4" fill="#f7f4ee" stroke="#e0dbcf"/><text x="471" y="174" text-anchor="middle" font-size="10.5" fill="#1b1b1a" font-weight="600">build</text>
+        <rect x="514" y="158" width="78" height="24" rx="4" fill="#f7f4ee" stroke="#e0dbcf"/><text x="553" y="174" text-anchor="middle" font-size="10.5" fill="#1b1b1a" font-weight="600">bug</text>
+        <line x1="430" y1="202" x2="430" y2="218" stroke="#2f4858" stroke-width="1.7" marker-end="url(#ar)"/>
+        <rect x="250" y="222" width="360" height="46" rx="6" fill="#fff" stroke="#d8d3c8" stroke-width="1.2"/>
+        <text x="430" y="244" text-anchor="middle" font-size="13" font-weight="700" fill="#1b1b1a">Product &amp; Platform builders</text>
+        <text x="430" y="260" text-anchor="middle" font-size="11" fill="#54524d">run time-boxed missions — weeks, not quarters</text>
+        <line x1="430" y1="268" x2="430" y2="284" stroke="#2f4858" stroke-width="1.7" marker-end="url(#ar)"/>
+        <rect x="40" y="288" width="780" height="96" rx="8" fill="#eef2f4" stroke="#6b8a99" stroke-width="1.3"/>
+        <text x="60" y="310" font-size="10.5" letter-spacing="1" fill="#2f4858" font-weight="700">TECHNOLOGY PLANE · one shared cloud dev environment</text>
+        <text x="60" y="327" font-size="11" fill="#54524d">humans + toil agents build here — fluid · verifiable · safe sandboxed autonomy</text>
+        <rect x="60" y="338" width="350" height="36" rx="5" fill="#fff" stroke="#d8d3c8"/>
+        <text x="235" y="361" text-anchor="middle" font-size="11" fill="#1b1b1a" font-weight="600">Toil / BAU agents · scheduled · triggered</text>
+        <rect x="426" y="338" width="374" height="36" rx="5" fill="#fff" stroke="#d8d3c8"/>
+        <circle cx="446" cy="356" r="4.5" fill="#cf4b3a"/><circle cx="460" cy="356" r="4.5" fill="#e0a93b"/><circle cx="474" cy="356" r="4.5" fill="#4a9b5e"/>
+        <text x="610" y="360" text-anchor="middle" font-size="11" fill="#1b1b1a" font-weight="600">code-review rubric → traffic-signal gate</text>
+        <line x1="430" y1="384" x2="430" y2="400" stroke="#2f4858" stroke-width="1.7" marker-end="url(#ar)"/>
+        <text x="430" y="418" text-anchor="middle" font-size="11" fill="#8c887f" font-style="italic">→ deployed, customer-impacting change</text>
+        <rect x="648" y="110" width="178" height="38" rx="6" fill="#2f4858"/>
+        <text x="660" y="128" font-size="10.5" fill="#fff" font-weight="700">Clarity regulator</text>
+        <text x="660" y="141" font-size="9" fill="#cdd8de">problem ↔ solution</text>
+        <line x1="648" y1="129" x2="614" y2="135" stroke="#2f4858" stroke-width="1.5" marker-end="url(#ar)"/>
+        <rect x="648" y="154" width="178" height="38" rx="6" fill="#2f4858"/>
+        <text x="660" y="172" font-size="10.5" fill="#fff" font-weight="700">Throughput regulator</text>
+        <text x="660" y="185" font-size="9" fill="#cdd8de">mix by classification</text>
+        <line x1="648" y1="173" x2="614" y2="170" stroke="#2f4858" stroke-width="1.5" marker-end="url(#ar)"/>
+        <path d="M250,415 L44,415 L44,67 L246,67" fill="none" stroke="#6b8a99" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ars)"/>
+        <text x="30" y="250" font-size="10.5" letter-spacing="1" fill="#6b8a99" font-weight="700" transform="rotate(-90 30 250)" text-anchor="middle">TELEMETRY · every stage emits it</text>
+      </svg>
+    </figure>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">06</span> &nbsp;The flow plane</p>
+    <h2>From signal to shipped change</h2>
+    <ul class="pts">
+      <li><strong>Knowledge agents</strong> — turn raw signals into a maintained org knowledge base.</li>
+      <li><strong>Buildable backlog agent</strong> — classifies work, and <em>manufactures clarity</em>: an item is buildable only when it clears a rubric; otherwise <em>escalate</em>. The honesty metric is the <strong>bounce-back rate</strong>.</li>
+      <li><strong>Builders</strong> — human and agent — run <strong>time-boxed missions</strong>.</li>
+    </ul>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">07</span> &nbsp;The technology plane</p>
+    <h2>One environment. Everyone builds on it.</h2>
+    <ul class="pts">
+      <li>A <strong>one-click cloud dev environment</strong> for humans and toil agents alike.</li>
+      <li>You don't give an agent a privileged laptop — you give it a <strong>disposable sandbox</strong>. Safe autonomy by construction.</li>
+      <li>A <strong>code-review gate</strong> — green merges only behind independent oracles; auth/security/migrations never auto-green; autonomy <em>earned</em> against the measured false-green rate.</li>
+    </ul>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">08</span> &nbsp;The governors</p>
+    <h2>Two regulators — real control loops</h2>
+    <div class="cols">
+      <div class="card">
+        <div class="ch">Regulator one</div>
+        <div class="cn">Clarity</div>
+        <p>Problem ↔ solution balance. Sensor: bounce-back rate. Setpoint: your customer feedback-cycle length. The agent raises or relaxes the clarity bar from the error.</p>
+      </div>
+      <div class="card">
+        <div class="ch">Regulator two</div>
+        <div class="cn">Throughput</div>
+        <p>Desired mix across experiment / learning / build / bug. Strategy stops being a slide and becomes an enforced allocation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">09</span> &nbsp;The honest part</p>
+    <h2>The constraint doesn't vanish — it moves</h2>
+    <p class="big">Automate both ends and the bottleneck relocates to two coupled places: the <span class="em">clarity / SME node</span>, and the <span class="em">human-review queue</span> (Little's Law is not optional).</p>
+    <p class="big">That's the design problem the system exists to manage: subordinate everything to it, then raise it.</p>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">10</span> &nbsp;The metric</p>
+    <h2>Leverage per engineer — done properly</h2>
+    <p class="mono-metric">customer-impacting <span class="em">outcome</span> <span class="div">÷</span> humans</p>
+    <ul class="pts">
+      <li>Numerator is an <strong>outcome measured after ship</strong>, not a self-declared change count.</li>
+      <li>Denominator is <strong>humans only</strong>; agents tracked separately.</li>
+      <li>Never reported alone — paired with a <strong>quality guardrail</strong> (change-failure rate).</li>
+      <li>An org-level trend, never a team target. No honest "2×" to promise.</li>
+    </ul>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">11</span> &nbsp;What's still hard</p>
+    <h2>The problems this doesn't solve</h2>
+    <ul class="pts">
+      <li>Evals &amp; drift for every agent.</li>
+      <li>Model collapse on a self-ingesting knowledge base.</li>
+      <li>Prompt-injection on agents with merge rights.</li>
+      <li>The economics of supervision — the review queue is the cost centre.</li>
+      <li>Operability &amp; ownership — an operating system needs operators.</li>
+    </ul>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide">
+    <p class="kicker"><span class="n">12</span> &nbsp;Close</p>
+    <blockquote>Tools gave you a bump. The operating system is how you build a <span class="em">slope</span>.</blockquote>
+    <p class="lead-line" style="margin-top:1.6rem">Start by measuring two numbers: your <strong>bounce-back rate</strong> and your <strong>review-queue depth</strong>. They locate your constraint before you spend a dollar on architecture.</p>
+    <p class="byline">Read the white paper → <a href="index.html" style="color:var(--accent)">index.html</a> &nbsp;·&nbsp; the poster → <a href="infographic.html" style="color:var(--accent)">infographic.html</a></p>
+  </section>
+
+</div>
+
+<div class="chrome">
+  <a class="home" href="index.html">← The Product Development Operating System</a>
+  <div class="nav">
+    <button id="prev" aria-label="Previous slide">‹</button>
+    <span class="count"><span id="cur">1</span> / <span id="tot">16</span></span>
+    <button id="next" aria-label="Next slide">›</button>
+  </div>
+</div>
+<div class="hint">→ &nbsp;arrow keys, space, or click to advance</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('cur').textContent=i+1;
+    document.getElementById('bar').style.width=((i+1)/slides.length*100)+'%';
+    history.replaceState(null,'','#'+(i+1));
+  }
+  const next=()=>show(i+1), prev=()=>show(i-1);
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();next();}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev();}
+    else if(e.key==='Home'){show(0);} else if(e.key==='End'){show(slides.length-1);}
+  });
+  document.getElementById('next').addEventListener('click',e=>{e.stopPropagation();next();});
+  document.getElementById('prev').addEventListener('click',e=>{e.stopPropagation();prev();});
+  document.getElementById('deck').addEventListener('click',e=>{ if(e.target.closest('a,button'))return; next(); });
+  document.getElementById('tot').textContent=slides.length;
+  show((parseInt((location.hash||'').replace('#',''))||1)-1);
+</script>
+</body>
+</html>
