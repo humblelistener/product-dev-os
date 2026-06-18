@@ -1,16 +1,16 @@
 # Your AI coding gains have a ceiling. Here's what breaks through it.
 
-Almost every engineering org has now run the same experiment. Give developers AI assistants, watch throughput climb. The numbers are real and large — in our data, pull requests per engineer rose more than 60% in two quarters, and most code now has AI somewhere in its lineage. You're probably seeing a version of this yourself.
+I have watched this happen in enough teams now to stop calling it luck. You give your developers the new AI assistants — the completion, the chat, the agent in the editor — and for a few months the mood is festival: throughput climbs, the dashboards light up, everyone is pleased. In our data, pull requests per engineer rose more than 60% in two quarters, and most code now has AI somewhere in its lineage. You are probably living a version of this yourself.
 
-Then the curve bends. The first cohort gets a dramatic lift, the next gets less, and the org settles onto a higher plateau and stops climbing. The standard response is to buy more: a better model, another seat, a new agent in the IDE. The line barely moves.
+Then, quietly, the lights come down. The first cohort gets a dramatic lift, the next gets less, and the team settles onto a higher plateau and stops climbing. The standard response is to buy more — a better model, another seat, a new agent in the editor — and the line barely moves.
 
-That plateau is not a tooling problem, and you can't buy your way through it. Here's why — and what actually works.
+That plateau is not a tooling problem, and you cannot buy your way through it. Let me tell you why, and what actually works.
 
 ## The ceiling is three walls
 
 **Tools speed the middle, not the ends.** Software delivery has three stretches: deciding *what* to build (upstream), writing the code (the middle), and keeping the system healthy — patched, secure, deployable (downstream). AI tools attack the middle, and they're brilliant at it. But the middle was never your bottleneck. You were constrained by ambiguity at the front and accumulating maintenance at the back. Speed up the middle and you've moved the constraint, intact, to two ends you never touched — and made both *worse*, because more code now arrives needing decisions and needing care.
 
-**You can't automate vagueness.** The instinct is to point agents at the ends. It works far worse than expected. An agent amplifies the process it's dropped into. Give it a crisp spec and it performs. Give it a backlog of one-line tickets and tribal context — how most product decisions are actually made — and it amplifies *that*. You get ambiguity, faster. The ends resist automation because the ends are where the vagueness lives, and no frontier model fixes an org that can't say precisely what it wants.
+**You can't automate vagueness.** The instinct is to point agents at the ends. It works far worse than expected. My grandmother could cook for forty from a recipe that lived only in her head and her wrist — "salt as needed, cook till it's done." Hand that to someone who's never stood at the stove and you don't get her feast faster, you get confusion faster. An agent is the new cook: give it a precise recipe and it's magnificent; give it "as needed" — how most backlogs are written — and it amplifies the vagueness, fast. The ends resist automation because the ends are where the vagueness lives, and no frontier model fixes an org that can't say what it wants.
 
 **Individual gains don't compound.** Suppose you get clear work in and fast output for one engineer. You've made *one person* faster — a local optimisation. Twenty engineers each 40% faster in twenty directions isn't a 40% faster org; it's twenty faster silos and a coordination problem that eats the gain. Tools sit with the individual. They have no view of the portfolio and no memory connecting the research that justified a feature to the mission that built it.
 
@@ -43,7 +43,7 @@ A couple of these owe obvious debts: the clarity regulator is continuous discove
 
 ## But the constraint moves — and the honest version says where
 
-Most writing about AI and engineering stops at "we automated the bottleneck." Theory of constraints says that's never true: you don't remove a constraint, you move it. So where does it land here?
+Most writing about AI and engineering stops at "we automated the bottleneck." I've learned to distrust that sentence. Theory of constraints says it's never true: you don't remove a constraint, you move it — squeeze one end of a balloon and the air just bulges out the other. So where does it bulge here?
 
 Two coupled places. First, the **clarity-manufacturing node** — the backlog agent and the scarce human-SME judgement behind every "escalate." Build a system that makes everything else fast and you've funnelled all of its flow into the one place a machine can't fully staff. Second, the **human-review queue** — every amber verdict. A faster middle raises the arrival rate; reviewers bound the service rate; Little's Law does the rest, and the gate you built to *remove* the review bottleneck *becomes* it.
 

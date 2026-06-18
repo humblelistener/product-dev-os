@@ -146,9 +146,9 @@
 
 <main>
 
-<p class="lead">Almost every engineering organisation has now run the same experiment. Hand developers AI assistants — completion, chat, agentic coding in the editor — and watch throughput climb. The numbers are real and they are large. In our own data, pull requests per engineer rose by more than 60% inside two quarters, and the share of code with AI somewhere in its lineage passed 80%. Versions of this result are being reported everywhere, by organisations that look nothing alike.</p>
+<p class="lead">I have watched this happen in enough engineering teams now to stop calling it luck. You hand your developers the new AI assistants — the completion, the chat, the agent in the editor — and for a few months the mood is festival: throughput climbs, the dashboards light up, everyone is pleased. The numbers are real and they are large. In our own data, pull requests per engineer rose by more than 60% inside two quarters, and the share of code with AI somewhere in its lineage passed 80%. Versions of this result are being reported everywhere, by organisations that look nothing alike.</p>
 
-<p>Then something less discussed happens. The curve bends. The second derivative goes negative. The first cohort of adopters gets a dramatic lift; the next gets less; the organisation settles onto a new, higher plateau and stops climbing. Leaders respond the way they were trained to respond — they buy more tools. A better model. Another seat licence. A new agent in the IDE. And the line barely moves.</p>
+<p>Then, quietly, the lights come down. The curve bends; the second derivative goes negative. The first cohort of adopters gets a dramatic lift, the next gets less, and the organisation settles onto a new, higher plateau and stops climbing. Leaders respond the way they were trained to — they buy more tools. A better model. Another seat licence. A new agent in the editor. And the line barely moves.</p>
 
 <p>This paper is about why that plateau is not a tooling problem, what actually breaks through it, and — the part most writing in this space skips — where the constraint moves once you do break through. The short version: the gains from tools are real but bounded, because tools optimise the one part of software delivery that was never the constraint. To go further you stop buying capabilities and start building a system that organises them and tunes them to how your organisation works. You need an operating system for product development. But an operating system does not abolish the constraint; it relocates it to somewhere harder and more human — and the honest design problem is what you do there.</p>
 
@@ -171,7 +171,7 @@
   <span class="tag">Wall two</span>
   <h4>You cannot automate vagueness</h4>
   <p>The instinct, once you hit the first wall, is to point agents at the ends. Let them do the research. Let them run the upgrades. This works far less well than people expect, and the reason is structural rather than technical.</p>
-  <p>An agent amplifies the process it is dropped into. Give it a crisp specification, a clear definition of done and a bounded surface, and it performs. Give it the way most product decisions are actually made — a backlog of one-line tickets, tribal context, a roadmap that is really a wish-list — and it amplifies <em>that</em>. You get ambiguity, faster. The agent produces something plausible, someone has to untangle whether it was the right thing, and the round-trip eats the gain.</p>
+  <p>An agent amplifies the process it is dropped into. My grandmother could cook for forty people from a recipe that lived only in her head and her wrist — "salt as needed, cook till it is done." Hand that same recipe to someone who has never stood at the stove and you do not get her feast faster; you get confusion faster. An agent is the new cook. Give it a precise recipe — a crisp specification, a clear definition of done, a bounded surface — and it is magnificent. Give it the way most product decisions are actually made — a backlog of one-line tickets, tribal context, a roadmap that is really a wish-list — and it amplifies <em>that</em>. You get ambiguity, faster: the agent produces something plausible, someone has to untangle whether it was the right thing, and the round-trip eats the gain.</p>
   <p>This is why the ends resist automation in a way the middle never did. The ends are where the vagueness lives. And vagueness is not a model capability problem you can wait out with the next release — it is a property of the organisation's process. No frontier model fixes an organisation that cannot say precisely what it wants.</p>
 </div>
 
@@ -336,7 +336,7 @@
 <h2><span class="num">IV.</span>The honest part</h2>
 <h3 class="parttitle">Where the constraint goes next</h3>
 
-<p>Most writing about AI and engineering stops at "we automated the bottleneck." Theory of constraints says that sentence is never true. You do not remove a constraint; you <em>move</em> it. Relieve the binding constraint and the system speeds up until it binds somewhere else — and if you are not watching, the new constraint is the thing you just made faster everything-around.</p>
+<p>Most writing about AI and engineering stops at "we automated the bottleneck." I have learned to distrust that sentence, because theory of constraints says it is never true. You do not remove a constraint; you <em>move</em> it — squeeze one end of a balloon and the air does not leave, it bulges out the other. Relieve the binding constraint and the system speeds up until it binds somewhere else; and if you are not watching, the new constraint is hiding behind the very thing you just made fast.</p>
 
 <p>So apply that discipline to this architecture honestly. Automate the upstream end with the knowledge and backlog agents. Automate the downstream end with the toil agents and the gate. Where does the constraint land? In two coupled places, and the diagram points straight at them.</p>
 
