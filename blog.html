@@ -74,30 +74,44 @@
 
 <p>The analogy is exact. A computer's OS <strong>schedules</strong> work, <strong>allocates</strong> resources, <strong>enforces contracts</strong> so components can trust each other, and <strong>abstracts the machine</strong> so app developers ignore the hardware. Raw processors aren't a computer; the OS makes them one. Replace silicon with engineering capacity and AI agents and the mapping holds.</p>
 
-<p>An operating system for product development looks like a substrate plus three planes:</p>
+<p>An operating system for product development has <strong>two planes</strong>, connected by telemetry and tuned by two regulators.</p>
 
+<p><strong>The flow plane</strong> — how work moves from signal to shipped change:</p>
 <ul>
-<li><strong>Substrate — platform automation.</strong> Autonomous agents own the downstream end: patching, security, upgrades, and the review bottleneck a faster middle creates. They respond to events — a vulnerability, an upgrade, an incident — classify the risk, and either route to a human verdict or ship low-risk changes themselves.</li>
-<li><strong>Plane 1 — insight orchestrators.</strong> The upstream end. Orchestrators for customer success, product research, operations and platform turn raw signals into structured, validated work, with a human in the loop. This kills vagueness <em>at the source</em>.</li>
-<li><strong>Plane 2 — the portfolio orchestrator.</strong> It allocates scarce capacity across experiments, features, platform health and security, holding a deliberate ratio instead of letting the loudest stakeholder win. Strategy stops being a slide and becomes an enforced allocation.</li>
-<li><strong>Plane 3 — the mission orchestrator.</strong> Execution in time-boxed <strong>missions</strong> — weeks, never quarters. Each piece of work is classified by type and risk, then routed to the right structured workflow. Nothing executes unclassified.</li>
+<li><strong>Organisation knowledge agents</strong> turn raw signals — research, support, usage, incidents, industry — into a maintained org knowledge base. The upstream end, owned by the system instead of living in people's heads.</li>
+<li><strong>The buildable backlog agent</strong> is the heart. It <em>classifies</em> every item by its true nature — experiment, learning, build, or bug — and it <em>manufactures clarity</em>: running in a deliberate plan mode, it orchestrates consultants (both AI agents and human SMEs) to co-create each item up to the clarity it needs. This is the direct answer to "you can't automate vagueness" — clarity becomes a manufactured output, not a hope.</li>
+<li><strong>Product and platform builders</strong> — human and agent — take buildable items and run them as <strong>missions</strong>, time-boxed to weeks, never quarters.</li>
 </ul>
 
-<p>Read it top to bottom and the three walls fall in order. The substrate and Plane 1 take the two <em>ends</em>. Structured output and classification remove the <em>vagueness</em>. The connected layers are the coordination fabric that finally lets local speed <em>compound</em>.</p>
+<p><strong>The technology plane</strong> — the shared ground every builder actually builds on. One <strong>cloud development environment</strong>, provisioned in a click, identical everywhere. It earns its place three ways: <em>fluid movement</em> (same environment between systems), <em>verifiable autonomy</em> (agents work where humans can step in and check), and <em>safe autonomy</em> — you don't hand an agent a high-privilege laptop, you give it a disposable sandbox, which is what makes broad autonomous permission defensible at all. On this plane, <strong>toil/BAU agents</strong> (scheduled, chat-triggered, or fired by a vulnerability alert) pick up low-hanging work, and a <strong>repo-level code-review rubric</strong> drives a traffic-signal gate: green auto-merges, amber escalates to a human, red stops. But green only clears behind independent oracles the agent didn't author (the regression suite, a canary with auto-rollback), some change classes are never green (auth, security, migrations), and the auto-green envelope widens only when the measured false-green rate stays low — autonomy earned against escaped defects, not granted by self-imitation.</p>
+
+<p><strong>Two regulators</strong> make the system <em>yours</em> rather than a brittle prescription:</p>
+<ul>
+<li><strong>The clarity regulator</strong> sets the balance between problem and solution, tuned to your customer feedback cycle. Short cycle, team close to customers: less upfront spec, builders co-create the solution with customers in-flight. Long cycle, disconnected team: SMEs own solution and experiment definition and hand builders clarity before a mission starts.</li>
+<li><strong>The throughput regulator</strong> sets the desired mix across the work classifications — experiment, learning, build, bug. Strategy stops being a slide and becomes an enforced allocation.</li>
+</ul>
+
+<p>A framework that prescribes one shape is right for the org that invented it and wrong for everyone else. A framework with regulators <em>adapts</em>: the same OS runs correctly for a team shipping twice a week and one shipping into a long enterprise cycle, because the knobs are set differently.</p>
+
+<p>A couple of these owe obvious debts: the clarity regulator is continuous discovery / dual-track (Cagan, Torres) made a system parameter; missions are Shape Up (fixed time, variable scope); the two planes are Team Topologies. The narrow new claim is that calibrating clarity and work-mix can be <em>system-enforced parameters with feedback loops</em>, not team rituals — which is what lets one OS run across orgs that look nothing alike.</p>
+
+<h2>But the constraint moves — and the honest version says where</h2>
+
+<p>Most writing about AI and engineering stops at "we automated the bottleneck." Theory of constraints says that's never true: you don't remove a constraint, you move it. So where does it land here?</p>
+
+<p>Two coupled places. First, the <strong>clarity-manufacturing node</strong> — the backlog agent and the scarce human-SME judgement behind every "escalate." Build a system that makes everything else fast and you've funnelled all of its flow into the one place a machine can't fully staff. Second, the <strong>human-review queue</strong> — every amber verdict. A faster middle raises the arrival rate; reviewers bound the service rate; Little's Law does the rest, and the gate you built to <em>remove</em> the review bottleneck <em>becomes</em> it.</p>
+
+<p>That's not a flaw to hide — it's the design problem the rest of the system exists to manage. Once you see the constraint is clarity-and-review capacity, the job is clear: subordinate everything to it (what the regulators do — don't let the fast middle flood the queues), then raise it (widen the gate's earned autonomy; deepen the knowledge base so fewer gaps need a human). Leverage is ultimately capped by that node; the point of the system is to push the cap up deliberately, and never pretend it isn't there.</p>
 
 <h2>Measure leverage, not output</h2>
 
 <p>You can't manage toward a plateau you can't see, and output metrics — commits, PRs, deploys — hide this one. Output is exactly what tools inflated.</p>
 
-<p>The metric that exposes the plateau is <strong>leverage per engineer</strong>: customer-impacting change ÷ team size. <em>Customer-impacting</em> strips out the rework and busywork output metrics happily count. <em>Per engineer</em> makes it about amplified judgement, not headcount. A tool bumps this once; an operating system compounds it — and the destination is a <em>doubling</em>, the same people with structurally different output.</p>
+<p>The metric that exposes the plateau is <strong>leverage per engineer</strong> — but stated carelessly it commits the very sin it's meant to fix. Three rules keep it honest: (1) the numerator is an <strong>outcome</strong> measured after ship (adoption, retention, task-success), not a self-declared "impactful change" count — otherwise it's a feature flag for cherry-picking; (2) the denominator is <strong>humans only</strong>, agents tracked separately, or you game it by reclassifying people and punish the platform investment that amplifies everyone else; (3) <strong>never report it alone</strong> — pair it with a quality guardrail (change-failure rate), the way DORA and SPACE refuse single-metric tyranny. Use it as an org-level <em>trend</em>, never a team target, or Goodhart takes it. And no, there's no honest "2×" to promise — the ceiling is set by the constraint above, and the gain is whatever raising it allows.</p>
 
 <blockquote><p>Tools gave you a bump. The operating system is how you build a slope.</p></blockquote>
 
-<h2>You don't buy it — you build it</h2>
-
-<p>There's nothing to purchase, because most of an OS is the encoding of how <em>your</em> org decides, allocates and ships. It's built in stages: (1) tool adoption — where the plateau is born; (2) structured workflows — vagueness starts draining out; (3) orchestrated ends — the substrate and insight orchestrators take over what tools never touched; (4) compounding — the planes connect, and leverage climbs on its own.</p>
-
-<p>If your throughput jumped and flattened, you're at stage one, treating a structural problem as a shopping problem. The way up isn't the next licence. It's the unglamorous work of building stages two through four — and the orgs that start now will compound a lead the tool-buyers can't close by buying faster.</p>
+<p>You don't need the whole system to find out if you're stuck. Measure two numbers first: your <strong>bounce-back rate</strong> (how often work changes definition after build starts) and your <strong>review-queue depth</strong> (how long a change waits for human judgement). They locate your bottleneck before you spend a dollar on architecture — and they're the same two numbers the system uses to regulate itself. If they're healthy, your plateau is elsewhere. If not, no extra tool will move it.</p>
 
 <p>The agentic era isn't engineers typing faster. That framing <em>is</em> the plateau. The real shift is the line of responsibility moving between people and machines: routine work goes to agents, judgement stays with people, and an operating system is the structure that moves the line deliberately and compounds what's left.</p>
 

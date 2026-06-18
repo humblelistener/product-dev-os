@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Product Development Operating System</title>
-<meta name="description" content="AI coding tools deliver a one-time bump, then plateau. The next gain isn't another tool — it's structural. A concrete operating system for product development in the agentic era.">
+<meta name="description" content="AI coding tools deliver a one-time bump, then plateau. The fix is structural: a tunable operating system for product development — with a real clarity mechanism, control loops, failure semantics, and an honest account of where the constraint moves next.">
 <meta name="author" content="Karthik Padmanabhan">
 <style>
   :root{
@@ -33,7 +33,6 @@
   .wrap{max-width:42rem;margin:0 auto;padding:0 1.4rem;}
   .sans{font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;}
 
-  /* Masthead */
   header.masthead{
     border-top:5px solid var(--ink);
     margin-top:0;
@@ -42,153 +41,78 @@
   }
   .kicker{
     font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
-    font-size:.72rem;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    color:var(--accent);
-    font-weight:600;
-    margin:0 0 1.4rem;
+    font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin:0 0 1.4rem;
   }
-  h1.title{
-    font-size:2.85rem;
-    line-height:1.08;
-    letter-spacing:-.012em;
-    margin:0 0 1rem;
-    font-weight:600;
-  }
-  p.standfirst{
-    font-size:1.28rem;
-    line-height:1.45;
-    color:var(--soft);
-    margin:0 0 2rem;
-    font-style:italic;
-  }
+  h1.title{font-size:2.85rem;line-height:1.08;letter-spacing:-.012em;margin:0 0 1rem;font-weight:600;}
+  p.standfirst{font-size:1.28rem;line-height:1.45;color:var(--soft);margin:0 0 2rem;font-style:italic;}
   .byline{
     font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
-    font-size:.86rem;
-    color:var(--faint);
-    letter-spacing:.01em;
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    padding:.85rem 0;
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:.4rem;
+    font-size:.86rem;color:var(--faint);letter-spacing:.01em;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:.85rem 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem;
   }
   .byline strong{color:var(--ink);font-weight:600;}
 
-  /* Body */
   main{padding-top:2.6rem;}
   h2{
-    font-size:1.02rem;
-    font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
-    letter-spacing:.04em;
-    text-transform:uppercase;
-    color:var(--accent);
-    font-weight:700;
-    margin:3.4rem 0 .2rem;
+    font-size:1.02rem;font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:3.4rem 0 .2rem;
   }
   h2 .num{color:var(--accent-soft);margin-right:.5rem;font-variant-numeric:tabular-nums;}
-  h3.parttitle{
-    font-size:1.78rem;
-    line-height:1.15;
-    letter-spacing:-.01em;
-    font-weight:600;
-    margin:.3rem 0 1.4rem;
-  }
-  h4{
-    font-size:1.18rem;
-    font-weight:600;
-    margin:2.1rem 0 .4rem;
-    letter-spacing:-.005em;
-  }
+  h3.parttitle{font-size:1.78rem;line-height:1.15;letter-spacing:-.01em;font-weight:600;margin:.3rem 0 1.4rem;}
+  h4{font-size:1.18rem;font-weight:600;margin:2.1rem 0 .4rem;letter-spacing:-.005em;}
   p{margin:0 0 1.25rem;}
   a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px;}
   strong{font-weight:600;}
   em{font-style:italic;}
   .lead{font-size:1.12rem;}
-  .lead::first-letter{
-    font-size:3.4rem;
-    line-height:.78;
-    float:left;
-    font-weight:600;
-    padding:.18rem .5rem .1rem 0;
-    color:var(--accent);
-  }
+  .lead::first-letter{font-size:3.4rem;line-height:.78;float:left;font-weight:600;padding:.18rem .5rem .1rem 0;color:var(--accent);}
 
-  /* Pull quote */
   blockquote{
-    margin:2.4rem 0;
-    padding:.2rem 0 .2rem 1.5rem;
-    border-left:3px solid var(--accent);
-    font-size:1.42rem;
-    line-height:1.32;
-    font-weight:600;
-    letter-spacing:-.01em;
-    color:var(--ink);
+    margin:2.4rem 0;padding:.2rem 0 .2rem 1.5rem;border-left:3px solid var(--accent);
+    font-size:1.42rem;line-height:1.32;font-weight:600;letter-spacing:-.01em;color:var(--ink);
   }
   blockquote p{margin:0;}
 
-  /* Section divider */
-  .sep{
-    text-align:center;
-    color:var(--faint);
-    letter-spacing:.7em;
-    margin:3rem 0 1rem;
-    font-size:.9rem;
-  }
+  .sep{text-align:center;color:var(--faint);letter-spacing:.7em;margin:3rem 0 1rem;font-size:.9rem;}
 
-  /* Figure / diagram */
   figure{margin:2.8rem 0;}
   figure svg{width:100%;height:auto;display:block;border:1px solid var(--line);background:#fff;border-radius:6px;}
-  figcaption{
-    font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
-    font-size:.82rem;
-    color:var(--faint);
-    margin-top:.8rem;
-    line-height:1.5;
-  }
+  figcaption{font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;font-size:.82rem;color:var(--faint);margin-top:.8rem;line-height:1.5;}
   figcaption strong{color:var(--soft);}
 
-  /* Inline list */
   ol.clean,ul.clean{margin:0 0 1.4rem;padding-left:1.3rem;}
   ol.clean li,ul.clean li{margin:0 0 .7rem;padding-left:.2rem;}
 
-  /* Numbered diagnosis blocks */
-  .diag{
-    border-top:1px solid var(--rule);
-    padding-top:1.3rem;
-    margin-top:1.8rem;
-  }
+  .diag{border-top:1px solid var(--rule);padding-top:1.3rem;margin-top:1.8rem;}
   .diag .tag{
-    font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
-    font-size:.74rem;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--accent-soft);
-    font-weight:700;
-    display:block;
-    margin-bottom:.3rem;
+    font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;font-size:.74rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-soft);font-weight:700;display:block;margin-bottom:.3rem;
   }
 
-  /* Footer */
-  footer{
-    margin-top:4rem;
-    border-top:1px solid var(--line);
-    padding:2.2rem 0 4rem;
-    font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;
-    font-size:.86rem;
-    color:var(--faint);
-    line-height:1.6;
-  }
+  .regs{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.8rem 0 1rem;}
+  .reg{border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:5px;padding:1rem 1.1rem 1.1rem;background:#fff;}
+  .reg .rh{font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-soft);font-weight:700;margin-bottom:.25rem;}
+  .reg .rn{font-weight:600;font-size:1.06rem;margin-bottom:.4rem;}
+  .reg p{font-size:.92rem;line-height:1.5;color:var(--soft);margin:0;}
+  @media (max-width:560px){.regs{grid-template-columns:1fr;}}
+
+  /* spec callout */
+  .box{background:#fff;border:1px solid var(--rule);border-left:3px solid var(--accent-soft);border-radius:5px;padding:1.1rem 1.25rem;margin:1.9rem 0;font-size:.97rem;line-height:1.55;}
+  .box .bh{font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-soft);font-weight:700;margin-bottom:.6rem;}
+  .box p{margin:0 0 .7rem;}
+  .box p:last-child{margin:0;}
+  .box dl{margin:.2rem 0 0;}
+  .box dt{font-weight:600;margin-top:.6rem;font-size:.95rem;}
+  .box dd{margin:.1rem 0 0;color:var(--soft);font-size:.95rem;}
+
+  .lineage{font-size:.97rem;color:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.2rem 0;margin:2.2rem 0;line-height:1.55;}
+  .lineage strong{color:var(--ink);}
+
+  footer{margin-top:4rem;border-top:1px solid var(--line);padding:2.2rem 0 4rem;font-family:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;font-size:.86rem;color:var(--faint);line-height:1.6;}
   footer a{color:var(--accent);}
-  .endmark{
-    text-align:center;
-    color:var(--accent);
-    font-size:1.2rem;
-    margin:2.6rem 0 0;
-  }
+  .endmark{text-align:center;color:var(--accent);font-size:1.2rem;margin:2.6rem 0 0;}
 
   @media (max-width:560px){
     body{font-size:18px;}
@@ -196,15 +120,13 @@
     p.standfirst{font-size:1.12rem;}
     blockquote{font-size:1.18rem;}
   }
-
   @media print{
     :root{--paper:#fff;}
     body{font-size:11.5pt;line-height:1.45;}
     .wrap{max-width:100%;padding:0;}
     h2{margin-top:1.6rem;}
     blockquote{font-size:1.1rem;page-break-inside:avoid;}
-    figure{page-break-inside:avoid;}
-    footer{page-break-inside:avoid;}
+    figure,.reg,.box,footer{page-break-inside:avoid;}
     a{color:var(--ink);text-decoration:none;}
   }
 </style>
@@ -215,10 +137,10 @@
 <header class="masthead">
   <p class="kicker">White Paper · Engineering Leadership in the Agentic Era</p>
   <h1 class="title">The Product Development Operating System</h1>
-  <p class="standfirst">AI coding tools gave every engineering organisation a one-time jump in output. Then the curve flattened. The next gain isn't another tool — it's structural.</p>
+  <p class="standfirst">AI coding tools gave every engineering organisation a one-time jump in output. Then the curve flattened. The next gain isn't another tool — it's structural. Here is the structure, where it breaks, and where the constraint goes next.</p>
   <div class="byline">
     <span>By <strong>Karthik Padmanabhan</strong></span>
-    <span>June 2026 · ~15 min read</span>
+    <span>June 2026 · ~28 min read</span>
   </div>
 </header>
 
@@ -228,7 +150,7 @@
 
 <p>Then something less discussed happens. The curve bends. The second derivative goes negative. The first cohort of adopters gets a dramatic lift; the next gets less; the organisation settles onto a new, higher plateau and stops climbing. Leaders respond the way they were trained to respond — they buy more tools. A better model. Another seat licence. A new agent in the IDE. And the line barely moves.</p>
 
-<p>This paper is about why that plateau is not a tooling problem, and what actually breaks through it. The short version: the gains from tools are real but bounded, because tools optimise the one part of software delivery that was never the constraint. To get the next order of magnitude you have to stop buying capabilities and start building a system that organises them. You need an operating system for product development.</p>
+<p>This paper is about why that plateau is not a tooling problem, what actually breaks through it, and — the part most writing in this space skips — where the constraint moves once you do break through. The short version: the gains from tools are real but bounded, because tools optimise the one part of software delivery that was never the constraint. To go further you stop buying capabilities and start building a system that organises them and tunes them to how your organisation works. You need an operating system for product development. But an operating system does not abolish the constraint; it relocates it to somewhere harder and more human — and the honest design problem is what you do there.</p>
 
 <blockquote><p>The plateau is not a sign that AI has run out of room. It is a sign that you have automated the easy middle and left the hard ends untouched.</p></blockquote>
 
@@ -271,160 +193,258 @@
 
 <p>The analogy is exact, not decorative. A computer's operating system does four things. It <strong>schedules</strong> work onto scarce resources. It <strong>allocates</strong> those resources according to priority. It <strong>enforces contracts</strong> so that components can trust each other and fail safely. And it <strong>abstracts the machine</strong> so that the people writing applications don't have to think about the hardware underneath. Raw processors and memory are not a computer. The operating system is what makes them one.</p>
 
-<p>Replace silicon with engineering capacity and AI agents and the mapping holds. An operating system for product development schedules work — it decides which missions run now and which wait. It allocates capacity across competing demands — experiments, new features, platform health, security. It enforces contracts — every piece of work enters in a known shape, is classified, and is routed to a workflow appropriate to its risk. And it abstracts the machine — a product manager or a researcher can put validated work into the system without needing to know how it gets built or kept alive.</p>
+<p>There is a fifth property that turns out to matter more than the four, and it is the one almost everyone misses. A real operating system is not a fixed thing — it exposes <strong>governors</strong>: tunable parameters that adapt its behaviour to the machine it is running on and the load it is carrying. An organisation with a two-day customer feedback loop should not run the same way as one whose feedback loop is two quarters long. The system has to be <em>tunable to context</em> — and, as we will see, it is two such regulators that do most of the work, and one closed control loop that makes them real rather than rhetorical.</p>
 
-<p>The word matters because the alternatives mislead. A <em>platform</em> is infrastructure you build on; it is necessary but passive, and it does not decide what runs. A <em>process</em> is a set of rules people follow by hand; it does not allocate or remember, and it degrades the moment attention lapses. An operating system is active and autonomous within its contracts. That is the category the plateau demands, and it is the category almost no one has actually built.</p>
+<p>Be honest about where the analogy breaks, because the break is the most important part of the paper. An operating system schedules work that arrives <em>already specified</em> — it never co-authors the programs it runs. Ours has to. The hardest, most human act in product development is deciding what is worth building and saying it precisely enough to build, and no OS analogy covers it. Rather than paper over the seam, this paper treats it as the crux: the component that manufactures clarity is where the real difficulty lives, and — as Part IV shows — it is where the constraint relocates the moment everything else is automated.</p>
 
-<blockquote><p>Raw processors aren't a computer. Fast engineers with AI tools aren't an operating system. The OS is what turns components into a system that compounds.</p></blockquote>
+<blockquote><p>Raw processors aren't a computer. Fast engineers with AI tools aren't an operating system. The OS is what turns components into a system that compounds — and an honest OS tells you where its own bottleneck moves to.</p></blockquote>
 
 <!-- ===================== PART III ===================== -->
 <h2><span class="num">III.</span>The architecture</h2>
 <h3 class="parttitle">What the system actually looks like</h3>
 
-<p>Concreteness is the test. It is easy to say "operating system" and mean nothing. Here is a real architecture — one a peer organisation could adopt — built from a substrate and three planes. Each layer exists to dismantle one of the three walls.</p>
+<p>Concreteness is the test. It is easy to say "operating system" and mean nothing. Here is a real architecture: two planes connected by a telemetry loop, tuned by two regulators. The <strong>flow plane</strong> governs how work moves from signal to shipped change. The <strong>technology plane</strong> is the shared ground every builder — human or agent — actually builds on. The split is the platform-team / stream-aligned-team distinction from Team Topologies, made concrete in software.</p>
 
 <figure>
-<svg viewBox="0 0 760 560" role="img" aria-labelledby="diagtitle diagdesc" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Helvetica Neue, Arial, sans-serif">
+<svg viewBox="0 0 860 690" role="img" aria-labelledby="diagtitle diagdesc" xmlns="http://www.w3.org/2000/svg" font-family="Inter, Helvetica Neue, Arial, sans-serif">
   <title id="diagtitle">The Product Development Operating System</title>
-  <desc id="diagdesc">A substrate of platform automation agents supports three planes: insight orchestrators that turn signals into validated work, a portfolio orchestrator that allocates capacity, and a mission orchestrator that classifies and runs time-boxed missions, producing deployed customer-impacting change.</desc>
-
+  <desc id="diagdesc">A flow plane moves work from organisation knowledge agents, through a buildable backlog agent that classifies work and co-creates clarity, to product and platform builders running time-boxed missions. The flow runs on a shared technology plane — one cloud development environment used by humans and toil agents, with a code-review rubric and traffic-signal gate. Two regulators (clarity and throughput) tune the backlog agent. Telemetry from every stage feeds back to the knowledge agents.</desc>
   <defs>
-    <marker id="arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L6,3 L0,6 Z" fill="#2f4858"/>
-    </marker>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="#2f4858"/></marker>
+    <marker id="arrowsoft" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L6,3 L0,6 Z" fill="#6b8a99"/></marker>
     <style>
       .band{fill:#fff;stroke:#d8d3c8;stroke-width:1.2;}
-      .lbl{font-size:11px;letter-spacing:.12em;fill:#2f4858;font-weight:700;text-transform:uppercase;}
-      .pl{font-size:12px;letter-spacing:.1em;fill:#6b8a99;font-weight:700;}
+      .lbl{font-size:13px;fill:#1b1b1a;font-weight:700;}
+      .sl{font-size:10.5px;letter-spacing:.1em;fill:#6b8a99;font-weight:700;}
+      .subx{font-size:11px;fill:#54524d;}
       .cell{fill:#f7f4ee;stroke:#e0dbcf;stroke-width:1;}
-      .ct{font-size:12.5px;fill:#1b1b1a;font-weight:600;}
-      .cs{font-size:10.5px;fill:#54524d;}
-      .sub{fill:#2f4858;}
-      .subt{font-size:12.5px;fill:#fff;font-weight:600;}
-      .subs{font-size:10.5px;fill:#cdd8de;}
-      .flow{stroke:#2f4858;stroke-width:1.6;fill:none;}
+      .ct{font-size:11px;fill:#1b1b1a;font-weight:600;}
       .io{font-size:11px;fill:#8c887f;font-style:italic;}
+      .flow{stroke:#2f4858;stroke-width:1.7;fill:none;}
+      .tele{stroke:#6b8a99;stroke-width:1.5;fill:none;stroke-dasharray:5 4;}
+      .regbox{fill:#2f4858;}
+      .regt{font-size:11px;fill:#fff;font-weight:700;}
+      .regsub{font-size:9.5px;fill:#cdd8de;}
+      .plane{fill:#eef2f4;stroke:#6b8a99;stroke-width:1.3;}
+      .planet{font-size:10.5px;letter-spacing:.12em;fill:#2f4858;font-weight:700;}
     </style>
   </defs>
-
-  <!-- input -->
-  <text x="380" y="22" text-anchor="middle" class="io">Signals · customers · research · support · operations</text>
-  <line x1="380" y1="30" x2="380" y2="52" class="flow" marker-end="url(#arrow)"/>
-
-  <!-- PLANE 1 -->
-  <rect x="20" y="56" width="720" height="96" rx="6" class="band"/>
-  <text x="36" y="80" class="pl">PLANE 1</text>
-  <text x="36" y="96" class="lbl">Insight orchestrators</text>
-  <g>
-    <rect x="36" y="104" width="166" height="38" rx="4" class="cell"/>
-    <text x="119" y="121" text-anchor="middle" class="ct">Customer</text>
-    <text x="119" y="135" text-anchor="middle" class="cs">success &amp; feedback</text>
-    <rect x="212" y="104" width="166" height="38" rx="4" class="cell"/>
-    <text x="295" y="121" text-anchor="middle" class="ct">Product</text>
-    <text x="295" y="135" text-anchor="middle" class="cs">research &amp; ideas</text>
-    <rect x="388" y="104" width="166" height="38" rx="4" class="cell"/>
-    <text x="471" y="121" text-anchor="middle" class="ct">Operations</text>
-    <text x="471" y="135" text-anchor="middle" class="cs">incidents &amp; BAU</text>
-    <rect x="564" y="104" width="160" height="38" rx="4" class="cell"/>
-    <text x="644" y="121" text-anchor="middle" class="ct">Platform</text>
-    <text x="644" y="135" text-anchor="middle" class="cs">health &amp; risk</text>
-  </g>
-
-  <text x="380" y="170" text-anchor="middle" class="io">→ structured, validated work (human in the loop)</text>
-  <line x1="380" y1="176" x2="380" y2="196" class="flow" marker-end="url(#arrow)"/>
-
-  <!-- PLANE 2 -->
-  <rect x="20" y="200" width="720" height="86" rx="6" class="band"/>
-  <text x="36" y="224" class="pl">PLANE 2</text>
-  <text x="36" y="240" class="lbl">Portfolio orchestrator</text>
-  <g>
-    <rect x="160" y="248" width="130" height="28" rx="4" class="cell"/>
-    <text x="225" y="266" text-anchor="middle" class="cs">Experiments</text>
-    <rect x="300" y="248" width="130" height="28" rx="4" class="cell"/>
-    <text x="365" y="266" text-anchor="middle" class="cs">New features</text>
-    <rect x="440" y="248" width="130" height="28" rx="4" class="cell"/>
-    <text x="505" y="266" text-anchor="middle" class="cs">Platform</text>
-    <rect x="580" y="248" width="144" height="28" rx="4" class="cell"/>
-    <text x="652" y="266" text-anchor="middle" class="cs">Ops &amp; security</text>
-  </g>
-
-  <text x="380" y="304" text-anchor="middle" class="io">→ capacity allocated by deliberate ratio</text>
-  <line x1="380" y1="310" x2="380" y2="330" class="flow" marker-end="url(#arrow)"/>
-
-  <!-- PLANE 3 -->
-  <rect x="20" y="334" width="720" height="104" rx="6" class="band"/>
-  <text x="36" y="358" class="pl">PLANE 3</text>
-  <text x="36" y="374" class="lbl">Mission orchestrator</text>
-  <rect x="36" y="384" width="340" height="42" rx="4" class="cell"/>
-  <text x="206" y="402" text-anchor="middle" class="ct">Classify by type &amp; risk</text>
-  <text x="206" y="417" text-anchor="middle" class="cs">→ route to the right structured workflow</text>
-  <rect x="392" y="384" width="332" height="42" rx="4" class="cell"/>
-  <text x="558" y="402" text-anchor="middle" class="ct">Run time-boxed missions</text>
-  <text x="558" y="417" text-anchor="middle" class="cs">value shipped in weeks, not quarters</text>
-
-  <text x="380" y="456" text-anchor="middle" class="io">→ deployed, customer-impacting change</text>
-  <line x1="380" y1="462" x2="380" y2="482" class="flow" marker-end="url(#arrow)"/>
-
-  <!-- SUBSTRATE -->
-  <rect x="20" y="486" width="720" height="58" rx="6" class="sub"/>
-  <text x="36" y="510" class="subt">SUBSTRATE · Platform automation agents</text>
-  <text x="36" y="528" class="subs">Coding · Code review · DevOps · Incident — own patching, security, upgrades, the review bottleneck</text>
+  <text x="430" y="22" text-anchor="middle" class="io">Signals · customer · product · operations · platform</text>
+  <line x1="430" y1="28" x2="430" y2="46" class="flow" marker-end="url(#arrow)"/>
+  <text x="250" y="42" class="sl">FLOW PLANE</text>
+  <rect x="250" y="50" width="360" height="52" rx="6" class="band"/>
+  <text x="430" y="74" text-anchor="middle" class="lbl">Organisation Knowledge agents</text>
+  <text x="430" y="91" text-anchor="middle" class="subx">build &amp; maintain the org knowledge base</text>
+  <line x1="430" y1="102" x2="430" y2="122" class="flow" marker-end="url(#arrow)"/>
+  <rect x="250" y="126" width="360" height="118" rx="6" class="band"/>
+  <text x="430" y="148" text-anchor="middle" class="lbl">Buildable Backlog agent</text>
+  <text x="430" y="165" text-anchor="middle" class="subx">consultants — AI agents + human SMEs — co-create clarity (plan mode)</text>
+  <rect x="262" y="176" width="80" height="26" rx="4" class="cell"/><text x="302" y="193" text-anchor="middle" class="ct">experiment</text>
+  <rect x="346" y="176" width="80" height="26" rx="4" class="cell"/><text x="386" y="193" text-anchor="middle" class="ct">learning</text>
+  <rect x="430" y="176" width="80" height="26" rx="4" class="cell"/><text x="470" y="193" text-anchor="middle" class="ct">build</text>
+  <rect x="514" y="176" width="84" height="26" rx="4" class="cell"/><text x="556" y="193" text-anchor="middle" class="ct">bug</text>
+  <text x="430" y="226" text-anchor="middle" class="subx">classify the work → clarity to the level the regulators demand</text>
+  <line x1="430" y1="244" x2="430" y2="264" class="flow" marker-end="url(#arrow)"/>
+  <rect x="250" y="268" width="360" height="56" rx="6" class="band"/>
+  <text x="430" y="291" text-anchor="middle" class="lbl">Product &amp; Platform builders</text>
+  <text x="430" y="309" text-anchor="middle" class="subx">run time-boxed missions — value in weeks, not quarters</text>
+  <line x1="430" y1="324" x2="430" y2="344" class="flow" marker-end="url(#arrow)"/>
+  <rect x="40" y="348" width="780" height="118" rx="8" class="plane"/>
+  <text x="60" y="372" class="planet">TECHNOLOGY PLANE · one shared cloud development environment</text>
+  <text x="60" y="390" class="subx">humans and toil/BAU agents build in the same place — fluid movement · verifiable · safe sandboxed autonomy</text>
+  <rect x="60" y="402" width="340" height="50" rx="5" class="band"/>
+  <text x="230" y="421" text-anchor="middle" class="ct" font-size="11.5px" font-weight="700">Toil / BAU agents</text>
+  <text x="230" y="438" text-anchor="middle" class="subx">scheduled · chat-triggered · vulnerability &amp; incident alerts</text>
+  <rect x="416" y="402" width="384" height="50" rx="5" class="band"/>
+  <text x="608" y="419" text-anchor="middle" class="ct" font-size="11.5px" font-weight="700">Code-review rubric → traffic-signal gate</text>
+  <circle cx="470" cy="438" r="5" fill="#cf4b3a"/><circle cx="486" cy="438" r="5" fill="#e0a93b"/><circle cx="502" cy="438" r="5" fill="#4a9b5e"/>
+  <text x="612" y="441" text-anchor="middle" class="subx">auto-merge · generate tests · or escalate to human</text>
+  <line x1="430" y1="466" x2="430" y2="486" class="flow" marker-end="url(#arrow)"/>
+  <text x="430" y="504" text-anchor="middle" class="io">→ deployed, customer-impacting change</text>
+  <text x="844" y="138" text-anchor="end" class="sl">REGULATORS</text>
+  <rect x="640" y="146" width="204" height="44" rx="6" class="regbox"/>
+  <text x="652" y="166" class="regt">Clarity regulator</text>
+  <text x="652" y="181" class="regsub">problem ↔ solution · by feedback cycle</text>
+  <path d="M640,168 L614,168" class="flow" marker-end="url(#arrow)"/>
+  <rect x="640" y="196" width="204" height="44" rx="6" class="regbox"/>
+  <text x="652" y="216" class="regt">Throughput regulator</text>
+  <text x="652" y="231" class="regsub">desired mix by work classification</text>
+  <path d="M640,218 L614,205" class="flow" marker-end="url(#arrow)"/>
+  <path d="M250,505 L44,505 L44,76 L246,76" class="tele" marker-end="url(#arrowsoft)"/>
+  <text x="30" y="300" class="sl" transform="rotate(-90 30 300)" text-anchor="middle">TELEMETRY · every stage emits it</text>
 </svg>
-<figcaption><strong>The operating system.</strong> Three planes over a substrate. Each layer dismantles one of the three walls: the substrate and Plane 1 automate the two <em>ends</em>; Plane 1's structured output and Plane 3's classification remove <em>vagueness</em>; the planes together provide the coordination layer that lets gains <em>compound</em>.</figcaption>
+<figcaption><strong>The operating system.</strong> A flow plane (knowledge → buildable backlog → builders running missions) runs on a shared technology plane used by humans and toil agents alike. Two regulators tune the backlog agent; telemetry feeds back to the knowledge agents. Part IV explains why the backlog agent and the human-review queue — not the boxes that look busiest — are where the constraint actually lands.</figcaption>
 </figure>
 
-<h4>The substrate: platform automation</h4>
-<p>Underneath everything sits a layer of autonomous agents that own the downstream end — the maintenance, security, patching and upgrade work that otherwise grows without bound. These are not editor assistants; they respond to events. A vulnerability is disclosed, an upgrade lands, an incident fires — and an agent opens the change, classifies its risk against a published rubric, and either routes it to a human verdict or, for low-risk changes, takes it through to production on its own. A code-review agent absorbs the review bottleneck that a faster middle inevitably creates. This substrate is what makes the rest deployable: it keeps the system you are building on top of healthy enough to build on.</p>
+<h4>The flow plane: knowledge agents</h4>
+<p><strong>Organisation Knowledge agents</strong> sit at the head of the flow. A set of agents continuously turns raw signals — interviews, support tickets, usage data, incident patterns, platform risk, industry movement — into a maintained organisational knowledge base. This is the upstream end that tools never touched, now owned by the system rather than living in people's heads. (It carries a real risk — a knowledge base that ingests the system's own prior outputs can poison itself; Part VII deals with it.)</p>
 
-<h4>Plane 1: insight orchestrators</h4>
-<p>The upstream end. A set of orchestrators — one each for customer success, product research, operations and platform — that continuously turn raw signals into structured, validated work. Interviews, support tickets, usage data, industry signals, incident patterns, platform risk: in at one side; enriched, specified, ready-to-build work items out the other, with a human in the loop at the validation step. This is the layer that kills vagueness <em>at the source</em>, so that everything downstream — including the agents — receives clear input rather than one-line tickets.</p>
+<h4>The flow plane: the buildable backlog agent</h4>
+<p>The <strong>Buildable Backlog agent</strong> is the heart of the flow and the most underestimated component in any AI delivery story. Its job is to convert knowledge into a backlog that is actually <em>buildable</em>. It does two things: it <strong>classifies</strong> every item by its true nature — an <em>experiment</em> (testing a hypothesis), a <em>learning</em> task (reducing uncertainty), a <em>build</em> (we know what to make), or a <em>bug</em> (something is broken) — and it <strong>manufactures clarity</strong>.</p>
 
-<h4>Plane 2: the portfolio orchestrator</h4>
-<p>A rich, validated backlog creates a new problem: too much worth doing. The portfolio orchestrator allocates scarce capacity across the four standing demands — experiments, new features, platform improvement, and operations and security — and holds a deliberate ratio between them rather than letting the loudest stakeholder win. This is the scheduler and the resource allocator of the operating system. It is where strategy stops being a slide and becomes an enforced allocation.</p>
+<p>"Manufactures clarity" is the phrase a sharp reader should refuse to accept on faith, because it is the exact thing Wall Two says you cannot automate. So here is the mechanism, not the word. Clarity is not a feeling; it is a checklist. An item is <em>buildable</em> only when it satisfies an explicit, inspectable rubric:</p>
 
-<h4>Plane 3: the mission orchestrator</h4>
-<p>Execution. Each unit of work is a <strong>mission</strong>, deliberately time-boxed to a few weeks — never a quarter. Quarterly value delivery is no longer competitive when the middle is this fast. The mission orchestrator classifies each piece of work by type and risk and the services it touches, then routes it to the appropriate structured workflow — a feature workflow, a tight-change workflow, an experiment workflow. The contract is the point: nothing executes unclassified, and classification determines how much structure and how much human oversight a mission gets.</p>
+<div class="box">
+  <div class="bh">The clarity rubric — an item is "buildable" only when</div>
+  <ul class="clean" style="margin-bottom:0;">
+    <li>the problem and the affected customer or segment are stated;</li>
+    <li>a success signal is named — the customer-observable thing that should move;</li>
+    <li>dependencies and affected services are identified;</li>
+    <li>acceptance criteria are written and testable;</li>
+    <li>a risk class is assigned (which sets how the change is reviewed downstream).</li>
+  </ul>
+</div>
 
-<p>Read the diagram top to bottom and the three walls fall in order. The substrate and Plane 1 take the two <em>ends</em> that tools never touched. Plane 1's structured output and Plane 3's classification remove the <em>vagueness</em> that blocked the ends. And the four layers, connected and sharing memory, are the coordination fabric that finally lets local speed <em>compound</em> into organisational leverage. That last property is the whole game, and it deserves its own metric.</p>
+<p>The agent runs every item against that rubric and returns one of two verdicts: <em>buildable</em>, or <strong>insufficient — escalate</strong>. There is no third "ship it and hope" path; that path is the vagueness Wall Two warns about. On <em>insufficient</em>, the agent routes the specific gap to the right consultant: a <strong>retrievable</strong> gap (a fact that exists somewhere) goes to an AI consultant-agent that mines the knowledge base; a <strong>judgement</strong> gap (a decision only an expert can make) goes to a human SME, in a structured plan-mode interaction that proposes options and records the decision. This is dual-track product discovery (Cagan; Torres) and a "definition of ready" — but enforced by a system with a verdict, rather than left to a team's discipline.</p>
+
+<p>The honesty test for the whole component is a single number: the <strong>bounce-back rate</strong> — the proportion of items that passed the gate as "buildable" but had their scope or definition materially change once build started. A low and falling bounce-back rate means clarity is real. A high one means the agent is manufacturing confident nonsense, and you would never know without the metric. That number also turns out to be the sensor for one of the two regulators (Part V).</p>
+
+<h4>The flow plane: builders and missions</h4>
+<p><strong>Product and platform builders</strong> — human and agent — take buildable items and run them as <strong>missions</strong>, deliberately time-boxed to weeks, never a quarter. Fixed time, variable scope, a deliberate appetite per mission: this is Basecamp's Shape Up, and the debt is worth naming plainly. What is different here is upstream of the mission, not inside it — missions are drawn from a system-classified, clarity-gated backlog whose mix is set by a regulator, rather than chosen at a betting table by hand. A mission is also not a hand-off to nobody: the stream-aligned team that runs it owns the service afterwards. Ownership after the time-box is a first-class question, returned to in Part VII.</p>
+
+<h4>The technology plane</h4>
+<p>Underneath the flow, every builder works in <strong>one shared cloud development environment</strong> — provisioned in a click, identical everywhere. This is not a convenience feature; it is what makes the rest safe and coherent, and it earns its place three ways.</p>
+<ol class="clean">
+<li><strong>Fluid movement, one experience.</strong> A builder moving between systems gets the same environment every time — no per-repo setup tax, no drift.</li>
+<li><strong>Verifiable autonomy.</strong> Toil agents run in the <em>same</em> environment as humans, so a person can step directly into what an agent did and verify it. Autonomy you can inspect is autonomy you can trust.</li>
+<li><strong>Safe autonomy.</strong> You do not hand an agent a high-privilege developer laptop. You give it a disposable, controlled sandbox. The shared environment is what makes broad autonomous permission defensible at all — the blast radius is bounded by construction. (Bounded, not eliminated; a triggerable agent is an attack surface, and Part VII treats it as one.)</li>
+</ol>
+<p>On this plane live the <strong>toil and BAU agents</strong> — the downstream end, automated. They are <em>scheduled</em>, run as <em>routines</em>, <em>triggered from chat</em> against a ticket, or fired by a <em>vulnerability or incident alert</em>. They pick up the low-hanging, high-volume work that otherwise erodes builder time.</p>
+
+<h4>The gate, and what happens when it is wrong</h4>
+<p>The plane carries the control that lets that automation be trusted at scale: a <strong>repo-level code-review rubric</strong>. A code-review agent applies industry standards — design, coding practice, security — against each repository's own rubric for testing, acceptability, risk and deployment, and it generates test cases to cover the scope of a change. Its verdict is a <strong>traffic signal</strong>: green merges automatically, amber routes to a human, red stops.</p>
+
+<p>That much is the easy part, and on its own it is dangerous. An agent that writes the code, writes the tests, <em>and</em> approves the merge has no independent oracle anywhere in the loop, and a self-tuning gate that widens "green" by imitating its own past approvals is a ratchet, not a gate — it will optimise for merge velocity and inherit every past mistake. So the gate is specified by its failure semantics, not its happy path:</p>
+
+<div class="box">
+  <div class="bh">Failure semantics of the gate</div>
+  <dl>
+    <dt>Independent oracles</dt>
+    <dd>Green never auto-merges on the review agent's word alone. It clears only behind oracles the agent did not author: the pre-existing regression suite, and a staged canary with automatic rollback on an SLO breach. The agent's generated tests are additive, never the gate.</dd>
+    <dt>A hard ceiling</dt>
+    <dd>Some change classes are never green regardless of rubric score — authentication and access control, security-sensitive surfaces, data migrations, and public API contracts. These are always amber at minimum.</dd>
+    <dt>Earned autonomy, against ground truth</dt>
+    <dd>The rubric does not online-learn from its own approvals. It improves through human-curated examples added on a cadence, and the auto-green envelope widens only when the measured <em>false-green rate</em> — greens that caused a production incident — stays below a set threshold. Autonomy is earned against escaped defects, not granted by imitation.</dd>
+    <dt>A named owner</dt>
+    <dd>A human owns the gate's policy. A green that ships a regression is that owner's incident, and mean-time-to-revert is tracked as a first-class SLO. An operating system needs operators.</dd>
+  </dl>
+</div>
+
+<p>Specified this way, the gate is how toil gets out of valuable builder time <em>without</em> anyone abandoning control. Specified the lazy way — green auto-merges, the gate learns from itself — it is how you ship a confident regression at 2am with no one accountable.</p>
 
 <!-- ===================== PART IV ===================== -->
-<h2><span class="num">IV.</span>The metric</h2>
-<h3 class="parttitle">Leverage per engineer</h3>
+<h2><span class="num">IV.</span>The honest part</h2>
+<h3 class="parttitle">Where the constraint goes next</h3>
+
+<p>Most writing about AI and engineering stops at "we automated the bottleneck." Theory of constraints says that sentence is never true. You do not remove a constraint; you <em>move</em> it. Relieve the binding constraint and the system speeds up until it binds somewhere else — and if you are not watching, the new constraint is the thing you just made faster everything-around.</p>
+
+<p>So apply that discipline to this architecture honestly. Automate the upstream end with the knowledge and backlog agents. Automate the downstream end with the toil agents and the gate. Where does the constraint land? In two coupled places, and the diagram points straight at them.</p>
+
+<p>The first is the <strong>clarity-manufacturing node</strong> — the backlog agent and, behind it, the scarce human SME judgement that the <em>insufficient → escalate</em> path depends on. Every item in the system funnels through this one station, and its hardest input is expert attention, which does not scale with compute. Build a system that makes everything else fast and you have built a system that routes all of its flow into the one place a machine cannot fully staff.</p>
+
+<p>The second is the <strong>human-review queue</strong> — every amber verdict from the gate. A faster middle increases the arrival rate into that queue; the queue's service rate is bounded by human reviewers. Little's Law is not optional: when arrivals outrun service, the queue depth — and therefore the lead time of everything in it — grows without bound. The gate, the thing you built to remove the review bottleneck, becomes the review bottleneck.</p>
+
+<blockquote><p>Build a system that makes everything else fast, and you have built a system that funnels all of its flow into the two places a machine cannot fully staff: expert judgement, and human review.</p></blockquote>
+
+<p>This is not a flaw to hide. It is the design problem the rest of the system exists to manage, and naming it is what separates an operating system from a pipeline with good marketing. Once you see that the constraint is clarity-and-review capacity, the job of the architecture becomes clear: <em>subordinate everything to that constraint, and then raise it.</em> You subordinate by never letting the fast middle flood the two queues faster than they can clear — which is exactly what the regulators are for. You raise the constraint two ways: by widening the gate's earned-autonomy envelope so fewer changes need a human at all, and by deepening the knowledge base so the backlog agent resolves more gaps as <em>retrievable</em> rather than escalating them as <em>judgement</em>. Leverage, in the end, is capped by the capacity of the clarity-and-review node. The whole point of the system is to push that cap up deliberately — and to never pretend it isn't there.</p>
+
+<!-- ===================== PART V ===================== -->
+<h2><span class="num">V.</span>The regulators</h2>
+<h3 class="parttitle">Knobs, or actual control loops?</h3>
+
+<p>The regulators are where the system becomes <em>yours</em> rather than a prescription — and they are also where it is easiest to cheat. Call something a "regulator," draw a dial, and you have borrowed the authority of control theory while specifying only a setpoint. A setpoint with no measured feedback is not a regulator; it is a policy with good branding. A real regulator is a closed loop: a controlled variable, a setpoint, a sensor, a comparator, and an actuator that changes the system when the two diverge.</p>
+
+<div class="regs">
+  <div class="reg">
+    <div class="rh">Regulator one</div>
+    <div class="rn">Clarity</div>
+    <p>Controls how much is specified upstream versus discovered in build — the problem/solution balance. This is continuous-discovery calibration (Cagan, Torres), made a system parameter instead of a team habit.</p>
+  </div>
+  <div class="reg">
+    <div class="rh">Regulator two</div>
+    <div class="rn">Throughput</div>
+    <p>Controls the desired mix across the work classifications — experiment, learning, build, bug. The deliberate ratio between betting, de-risking, building and fixing, held by the system rather than won by the loudest stakeholder.</p>
+  </div>
+</div>
+
+<p>Here is the clarity regulator specified as a loop, end to end — the test of whether any of this is real:</p>
+
+<div class="box">
+  <div class="bh">The clarity regulator, as a closed loop</div>
+  <dl>
+    <dt>Controlled variable</dt>
+    <dd>The <em>bounce-back rate</em> from Part III — how often work changes definition after build starts. It is the operational signature of how much clarity you are actually manufacturing.</dd>
+    <dt>Setpoint</dt>
+    <dd>Tied to feedback-cycle length. Short cycle, team close to customers: a <em>higher</em> tolerated bounce-back — it is cheap to learn in-flight, so demand less upfront and let builders co-create with customers. Long cycle, team disconnected: a <em>low</em> tolerated bounce-back — being wrong is expensive, so push solution and experiment definition onto SMEs before a mission starts.</dd>
+    <dt>Sensor</dt>
+    <dd>Telemetry from the mission sub-system reports actual bounce-back, per classification.</dd>
+    <dt>Comparator &amp; actuator</dt>
+    <dd>The backlog agent compares actual against setpoint. Above setpoint, it raises the clarity bar — more rubric items mandatory, more SME consultation before "buildable." Below it, it relaxes — fewer gates, more in-flight discovery. The dial is not set by hand each week; it is driven by the error signal.</dd>
+  </dl>
+</div>
+
+<p>The throughput regulator is the same shape: its controlled variable is the realised mix of shipped missions against the target mix; its sensor is the classification telemetry; its actuator is the backlog agent's admission control — what it releases to builders next. And here is the part the dial-drawing version always omits: <strong>the two regulators fight</strong>. They draw on the same scarce resource — expert and builder attention. Raising the clarity bar consumes SME time that bug-fix throughput also wants. Two coupled controllers feeding off shared telemetry and competing for one resource can oscillate or stall. The fix is the ordinary one from control engineering: a shared priority, and damping — you do not re-tune either loop faster than the system can respond, or they chase each other. This is the genuinely hard control problem in the whole design, and it is named here rather than hidden behind a knob.</p>
+
+<h4>Telemetry: the loop, not the logging</h4>
+<p>This is also what telemetry is <em>for</em>, and why "every stage emits telemetry" is a claim that has to earn itself. Emitting events and ingesting them is observability; it is not control. Control needs a closed loop where something <em>acts</em> on the error. One worked example, end to end: rising downstream incident telemetry on a set of services (sensor) raises the risk weight the backlog classifier assigns them (comparator); the throughput regulator shifts the target mix toward <em>bug</em> and <em>learning</em> work for those services (actuator); the incident rate falls in the next mission cohort (the loop closes, measured). That is a feedback loop. A dashboard pointed at the front of a pipeline is not.</p>
+
+<!-- ===================== PART VI ===================== -->
+<h2><span class="num">VI.</span>The metric</h2>
+<h3 class="parttitle">Leverage per engineer — done properly</h3>
 
 <p>You cannot manage toward a plateau you cannot see, and most engineering dashboards are built to hide this one. They measure output: commits, pull requests, story points, deploys. Output is exactly what AI tools inflated, which is why output metrics looked spectacular right up until the curve bent — and then kept looking fine while the organisation stopped improving.</p>
 
-<p>The metric that exposes the plateau, and that the operating system is built to move, is <strong>leverage per engineer</strong>: the volume of <em>customer-impacting change</em> divided by the size of the team that produced it. Two refinements carry all the weight. <em>Customer-impacting</em> excludes the churn — the rework, the busywork, the changes that ship nothing a customer would notice — that output metrics happily count. And <em>per engineer</em> turns it into a measure of leverage rather than headcount: the question is not how much you ship, but how much each person's judgement is amplified by the system around them.</p>
-
-<p>This is the number a tool can bump once and an operating system can compound. A tool raises the numerator for a while and then the ends and the coordination losses cap it. An operating system attacks every term at once: the substrate and insight orchestrators convert effort that was going to maintenance and ambiguity into customer-impacting change; the portfolio orchestrator stops capacity leaking into low-value work; the mission cadence shortens the distance between decision and impact. The destination is not a marginal lift. It is a <strong>doubling of leverage per engineer</strong> — the same people, a structurally different output — and it is reached by compounding, not by buying.</p>
-
-<blockquote><p>Output is what tools inflate. Leverage per engineer is what an operating system compounds. Measure the second and the plateau becomes visible.</p></blockquote>
-
-<!-- ===================== PART V ===================== -->
-<h2><span class="num">V.</span>The path</h2>
-<h3 class="parttitle">You don't buy an operating system — you build it</h3>
-
-<p>The uncomfortable implication of everything above is that there is nothing to purchase. No vendor ships your operating system, because most of it is the encoding of how <em>your</em> organisation decides, allocates and ships. It is built, in stages, and the stages are a maturity ladder worth naming because they tell you where you actually are.</p>
+<p>The metric that exposes the plateau is <strong>leverage per engineer</strong>. But stated carelessly it commits the very sin this section opens by attacking — so it has to be built with the same discipline as the gate, or it becomes a new vanity number that gets gamed inside a quarter. Three rules make it honest:</p>
 
 <ol class="clean">
-<li><strong>Tool adoption.</strong> Individuals use AI assistants. Output jumps. This is the stage that produces the plateau — and the stage almost everyone is stuck at, mistaking the one-time bump for a trend.</li>
-<li><strong>Structured workflows.</strong> The organisation stops dropping agents into ambiguity. Work is specified, classified and routed through repeatable workflows. Vagueness starts to drain out of the system. This is the first stage that addresses a wall rather than the middle.</li>
-<li><strong>Orchestrated ends.</strong> The substrate takes over downstream maintenance; insight orchestrators take over upstream enrichment. The two ends that tools never touched begin to automate. The constraint finally moves off the middle for good.</li>
-<li><strong>Compounding.</strong> The planes connect and share memory. Allocation, execution and insight feed each other. Leverage per engineer stops being a one-time bump and starts to climb on its own. This is the operating system, fully assembled.</li>
+<li><strong>The numerator is an outcome, not a change count.</strong> Not "customer-impacting change" as a self-declared label at merge — that is a feature flag for cherry-picking. Tie it to a customer-observable signal on the surface that changed: adoption, retention, task-success, or the value metric stated in the clarity rubric, measured <em>after</em> ship. A change that ships and moves nothing a customer does is not counted, however large the diff.</li>
+<li><strong>The denominator is humans, and only humans.</strong> Agents are tracked on a separate line — their cost and their leverage — never folded into "team size." Otherwise the ratio is gamed by reclassifying people as agents, and, worse, it penalises exactly the platform investment this paper argues for, because platform engineers amplify others rather than shipping customer-facing change themselves.</li>
+<li><strong>Never report it alone.</strong> Pair it with a stability counter-metric — change-failure rate, reliability — the way DORA pairs throughput with change-fail and SPACE was built to stop single-metric tyranny. Leverage that rises while failure rate rises is churn wearing a halo, not leverage.</li>
 </ol>
 
-<p>The diagnostic value is immediate. If your throughput jumped and then flattened, you are at stage one and you have been treating a structural problem as a shopping problem. The way up is not the next licence. It is the deliberate, unglamorous work of building stages two, three and four — and the organisations that start now will compound a lead that the ones still buying tools cannot close by buying faster.</p>
+<p>And use it as an organisation-level <em>trend</em>, never a team-level target. The moment it becomes a target, Goodhart's law takes it: it stops measuring leverage and starts measuring whatever is easiest to do that makes the number go up.</p>
+
+<p>What about the destination — the "2× per engineer" that a pitch deck wants here? There isn't an honest one to promise, and a paper whose first act is teaching you to distrust headline numbers has no business handing you one for its own product. The ceiling on leverage is set by the clarity-and-review constraint of Part IV. The gain is whatever raising that constraint allows — a hypothesis this metric exists to <em>test</em>, not a number to put on a slide.</p>
+
+<blockquote><p>Output is what tools inflate. Leverage per engineer — outcome-anchored, human-denominated, paired with a quality guardrail — is what an operating system compounds. The number is a hypothesis to test, not a destination to promise.</p></blockquote>
+
+<!-- ===================== PART VII ===================== -->
+<h2><span class="num">VII.</span>What's still hard</h2>
+<h3 class="parttitle">The problems this doesn't solve</h3>
+
+<p>An operating system that pretends to have no open problems is the surest sign it has never run. Five are real, and naming them is part of the design, not an apology for it.</p>
+
+<h4>Evaluation and drift</h4>
+<p>Every agent here — knowledge, backlog, review, toil — needs an offline evaluation suite and a regression gate, and every prompt or model change is a deployment that must clear it. Without evals, "the rubric learns" is unfalsifiable and "the agent manufactures clarity" is unmeasurable. Model version bumps and prompt edits drift behaviour silently; the answer is the boring engineering one — versioning, canaries, rollback — applied to agents as rigorously as to services.</p>
+
+<h4>Model collapse on the knowledge base</h4>
+<p>The knowledge base feeds the backlog agent and is fed, in part, by the system's own outputs. Without provenance on every fact and a human-curated ground-truth core, it can quietly ingest its own prior conclusions and converge on confident, self-referential wrongness. Telemetry must carry provenance, and the knowledge base needs a notion of which facts are observed versus inferred.</p>
+
+<h4>Security of autonomous agents</h4>
+<p>A sandboxed agent with merge rights, triggered by tickets and alerts, is a prompt-injection and privilege-escalation surface. A crafted ticket or alert payload can drive a toil agent to act. The sandbox bounds the blast radius; it does not sanitise the input. This needs the usual discipline made explicit for agents — input sanitisation, least-privilege tool scopes, secrets kept out of reach — because "safe autonomy" is a property you engineer, not a property of being in a sandbox.</p>
+
+<h4>The economics of supervision</h4>
+<p>The clarity-escalation path and the amber-review queue are the cost centre and, per Part IV, the constraint. If a large fraction of items escalate or go amber, you have relocated toil into supervision, not removed it — and the leverage metric must count that supervision as human time or it will report a rising number while engineers quietly become full-time agent babysitters. The plateau, wearing a new hat.</p>
+
+<h4>Operability and ownership</h4>
+<p>An operating system needs operators. Who runs the agents, the shared environment, and the gate at 2am when they fail? The Team Topologies answer is the right one: the platform is a product with users — the builders — and it has its own backlog, on-call and golden paths. Missions are run by stream-aligned teams who own the service after the time-box ends. A mission that hands off to nobody is how you accumulate the very maintenance debt the toil agents were meant to retire.</p>
+
+<!-- ===================== LINEAGE ===================== -->
+<p class="lineage"><strong>What this stands on, and the narrow claim.</strong> None of the parts are unprecedented. The clarity regulator is continuous discovery and dual-track development (Marty Cagan; Teresa Torres). Missions are Shape Up (Basecamp) — fixed time, variable scope, an appetite. The two-plane split is Team Topologies (platform and stream-aligned teams). The metric discipline is DORA and SPACE. The single, falsifiable claim of this paper is narrower than any of them: that the calibration of clarity to feedback-cycle length, and the work mix across classifications, can be made <em>system-enforced parameters with measured feedback loops</em> rather than team rituals — and that doing so is what lets one operating system run correctly across organisations that look nothing alike. Everything else is assembly.</p>
 
 <div class="sep">· · ·</div>
 
 <!-- ===================== CLOSE ===================== -->
-<h2><span class="num">VI.</span>Close</h2>
+<h2><span class="num">VIII.</span>Close</h2>
 <h3 class="parttitle">The line moves</h3>
 
-<p>It is tempting to frame the agentic era as engineers typing faster. That framing is the plateau in disguise — it keeps your attention on the middle, on the one stretch that was never the constraint, and it sends you back to the store for another tool every time the curve bends.</p>
+<p>You do not need to build this whole system to find out whether you are hitting the ceiling. Measure two numbers first. Your <strong>bounce-back rate</strong> — how often work changes definition after build starts — tells you how much clarity you are actually manufacturing today. Your <strong>review-queue depth</strong> — how long a change waits for human judgement — tells you where your constraint already sits. Those two numbers locate your constraint before you spend a dollar on architecture, and they are the same two numbers the system uses to regulate itself. Start by measuring them. If they are healthy, your plateau is somewhere else and this is not your paper. If they are not, you have found your bottleneck, and no additional tool will move it.</p>
 
-<p>The real shift is quieter and far larger. The line of responsibility between people and their machines is moving. The work that does not require human judgement — the patching, the grooming, the routine review, the maintenance that grows without end — moves to agents. What stays with people is the part that was always the point: deciding what is worth building, and judging whether what got built is right. An operating system for product development is simply the structure that moves that line deliberately, and then compounds what is left.</p>
+<p>It is tempting to frame the agentic era as engineers typing faster. That framing is the plateau in disguise — it keeps your attention on the middle, the one stretch that was never the constraint, and it sends you back to the store for another tool every time the curve bends.</p>
 
-<p>Tools gave you a bump. The operating system is how you build a slope. The organisations that understand the difference will spend the next few years pulling away from the ones that are still waiting for a better model to do it for them.</p>
+<p>The real shift is quieter and larger. The line of responsibility between people and their machines is moving. The work that does not require human judgement — the patching, the grooming, the routine review, the maintenance that grows without end — moves to agents on the technology plane. What stays with people is the part that was always the point, and that the architecture is honest enough to admit it cannot automate: deciding what is worth building, co-creating clarity, and judging whether what got built is right. An operating system for product development is the structure that moves that line deliberately, tunes itself to your context, and is candid about where its own bottleneck now lives.</p>
+
+<p>Tools gave you a bump. The operating system is how you build a slope. The organisations that understand the difference — and that are willing to stare at their new constraint instead of buying around it — will spend the next few years pulling away from the ones still waiting for a better model to do it for them.</p>
 
 <p class="endmark">■</p>
 

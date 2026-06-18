@@ -22,9 +22,12 @@ throughput climb — and got the same result: a large one-time bump, then a plat
 is structural, not a tooling problem. It is three walls: tools speed the *middle* of delivery,
 not the *ends*; you can't automate the *vagueness* that lives at those ends; and individual
 gains don't *compound* without a coordination layer. The fix isn't another tool. It's an
-operating system for product development — a platform-automation substrate under three planes
-(insight orchestrators, a portfolio orchestrator, a mission orchestrator) — measured by
-*leverage per engineer*, and built in stages rather than bought.
+operating system for product development — a **flow plane** (organisation knowledge agents → a
+buildable backlog agent that classifies work and manufactures clarity → product/platform
+builders running time-boxed missions) running on a shared **technology plane** (one cloud dev
+environment for humans and toil agents, with a code-review traffic-signal gate), tuned by two
+**regulators** (clarity and throughput) and wired together by telemetry. Measured by
+*leverage per engineer*.
 
 ## Notes
 
